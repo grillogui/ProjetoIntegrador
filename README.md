@@ -1,4 +1,4 @@
-# Projeto integrador feito para o bootcamp de .NET da Generation Brasil.
+Projeto integrador feito para o bootcamp de .NET da Generation Brasil.
 
 Participantes do projeto:
 Guilherme Grillo - @grillogui
