@@ -1,0 +1,6 @@
+C:\Users\Usuario\Documents\Curso Generation\Git.Projeto\ProjetoIntegrador\ProjectEcommerce\ProjectEcommerce\obj\Debug\net5.0\ProjectEcommerce.csproj.AssemblyReference.cache
+C:\Users\Usuario\Documents\Curso Generation\Git.Projeto\ProjetoIntegrador\ProjectEcommerce\ProjectEcommerce\obj\Debug\net5.0\ProjectEcommerce.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Usuario\Documents\Curso Generation\Git.Projeto\ProjetoIntegrador\ProjectEcommerce\ProjectEcommerce\obj\Debug\net5.0\ProjectEcommerce.AssemblyInfoInputs.cache
+C:\Users\Usuario\Documents\Curso Generation\Git.Projeto\ProjetoIntegrador\ProjectEcommerce\ProjectEcommerce\obj\Debug\net5.0\ProjectEcommerce.AssemblyInfo.cs
+C:\Users\Usuario\Documents\Curso Generation\Git.Projeto\ProjetoIntegrador\ProjectEcommerce\ProjectEcommerce\obj\Debug\net5.0\ProjectEcommerce.csproj.CoreCompileInputs.cache
+C:\Users\Usuario\Documents\Curso Generation\Git.Projeto\ProjetoIntegrador\ProjectEcommerce\ProjectEcommerce\obj\Debug\net5.0\ProjectEcommerce.MvcApplicationPartsAssemblyInfo.cache

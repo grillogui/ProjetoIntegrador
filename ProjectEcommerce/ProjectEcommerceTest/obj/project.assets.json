@@ -8662,19 +8662,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\Meu Computador\\.nuget\\packages\\": {}
+    "C:\\Users\\Usuario\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Meu Computador\\Desktop\\PROJECT\\ProjetoIntegrador\\ProjectEcommerce\\ProjectEcommerceTest\\ProjectEcommerceTest.csproj",
+      "projectUniqueName": "C:\\Users\\Usuario\\Documents\\Curso Generation\\Git.Projeto\\ProjetoIntegrador\\ProjectEcommerce\\ProjectEcommerceTest\\ProjectEcommerceTest.csproj",
       "projectName": "ProjectEcommerceTest",
-      "projectPath": "C:\\Users\\Meu Computador\\Desktop\\PROJECT\\ProjetoIntegrador\\ProjectEcommerce\\ProjectEcommerceTest\\ProjectEcommerceTest.csproj",
-      "packagesPath": "C:\\Users\\Meu Computador\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Meu Computador\\Desktop\\PROJECT\\ProjetoIntegrador\\ProjectEcommerce\\ProjectEcommerceTest\\obj\\",
+      "projectPath": "C:\\Users\\Usuario\\Documents\\Curso Generation\\Git.Projeto\\ProjetoIntegrador\\ProjectEcommerce\\ProjectEcommerceTest\\ProjectEcommerceTest.csproj",
+      "packagesPath": "C:\\Users\\Usuario\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Usuario\\Documents\\Curso Generation\\Git.Projeto\\ProjetoIntegrador\\ProjectEcommerce\\ProjectEcommerceTest\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\Meu Computador\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Usuario\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -8688,8 +8688,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\Meu Computador\\Desktop\\PROJECT\\ProjetoIntegrador\\ProjectEcommerce\\ProjectEcommerce\\ProjectEcommerce.csproj": {
-              "projectPath": "C:\\Users\\Meu Computador\\Desktop\\PROJECT\\ProjetoIntegrador\\ProjectEcommerce\\ProjectEcommerce\\ProjectEcommerce.csproj"
+            "C:\\Users\\Usuario\\Documents\\Curso Generation\\Git.Projeto\\ProjetoIntegrador\\ProjectEcommerce\\ProjectEcommerce\\ProjectEcommerce.csproj": {
+              "projectPath": "C:\\Users\\Usuario\\Documents\\Curso Generation\\Git.Projeto\\ProjetoIntegrador\\ProjectEcommerce\\ProjectEcommerce\\ProjectEcommerce.csproj"
             }
           }
         }
@@ -8744,7 +8744,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
       }
     }
   }
