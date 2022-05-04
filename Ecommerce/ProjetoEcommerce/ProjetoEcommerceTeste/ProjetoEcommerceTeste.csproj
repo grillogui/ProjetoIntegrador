@@ -15,4 +15,9 @@
     <PackageReference Include="coverlet.collector" Version="3.1.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="tests\data\" />
+    <Folder Include="tests\repositories\" />
+  </ItemGroup>
+
 </Project>
