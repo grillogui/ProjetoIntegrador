@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Grillo\\OneDrive\\Documentos\\GEN CONTEUDOS\\GIT\\ProjetoIntegrador\\ProjectEcommerce\\ProjectEcommerce\\ProjectEcommerce.csproj": {}
+    "C:\\Users\\Meu Computador\\Desktop\\PROJECT\\ProjetoIntegrador\\ProjectEcommerce\\ProjectEcommerce\\ProjectEcommerce.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Grillo\\OneDrive\\Documentos\\GEN CONTEUDOS\\GIT\\ProjetoIntegrador\\ProjectEcommerce\\ProjectEcommerce\\ProjectEcommerce.csproj": {
+    "C:\\Users\\Meu Computador\\Desktop\\PROJECT\\ProjetoIntegrador\\ProjectEcommerce\\ProjectEcommerce\\ProjectEcommerce.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Grillo\\OneDrive\\Documentos\\GEN CONTEUDOS\\GIT\\ProjetoIntegrador\\ProjectEcommerce\\ProjectEcommerce\\ProjectEcommerce.csproj",
+        "projectUniqueName": "C:\\Users\\Meu Computador\\Desktop\\PROJECT\\ProjetoIntegrador\\ProjectEcommerce\\ProjectEcommerce\\ProjectEcommerce.csproj",
         "projectName": "ProjectEcommerce",
-        "projectPath": "C:\\Users\\Grillo\\OneDrive\\Documentos\\GEN CONTEUDOS\\GIT\\ProjetoIntegrador\\ProjectEcommerce\\ProjectEcommerce\\ProjectEcommerce.csproj",
-        "packagesPath": "C:\\Users\\Grillo\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Grillo\\OneDrive\\Documentos\\GEN CONTEUDOS\\GIT\\ProjetoIntegrador\\ProjectEcommerce\\ProjectEcommerce\\obj\\",
+        "projectPath": "C:\\Users\\Meu Computador\\Desktop\\PROJECT\\ProjetoIntegrador\\ProjectEcommerce\\ProjectEcommerce\\ProjectEcommerce.csproj",
+        "packagesPath": "C:\\Users\\Meu Computador\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Meu Computador\\Desktop\\PROJECT\\ProjetoIntegrador\\ProjectEcommerce\\ProjectEcommerce\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Grillo\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Meu Computador\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -73,7 +73,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.201\\RuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.202\\RuntimeIdentifierGraph.json"
         }
       }
     }
