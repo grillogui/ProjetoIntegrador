@@ -8662,19 +8662,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\User\\.nuget\\packages\\": {}
+    "C:\\Users\\user\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\User\\Desktop\\Joceline\\Gen\\Generation\\1 Para o Git\\ProjetoIntegrador\\ProjectEcommerce\\ProjectEcommerceTest\\ProjectEcommerceTest.csproj",
+      "projectUniqueName": "C:\\Users\\user\\OneDrive\\Documents\\Generation\\GIT\\Projeto\\ProjetoIntegrador\\ProjectEcommerce\\ProjectEcommerceTest\\ProjectEcommerceTest.csproj",
       "projectName": "ProjectEcommerceTest",
-      "projectPath": "C:\\Users\\User\\Desktop\\Joceline\\Gen\\Generation\\1 Para o Git\\ProjetoIntegrador\\ProjectEcommerce\\ProjectEcommerceTest\\ProjectEcommerceTest.csproj",
-      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\User\\Desktop\\Joceline\\Gen\\Generation\\1 Para o Git\\ProjetoIntegrador\\ProjectEcommerce\\ProjectEcommerceTest\\obj\\",
+      "projectPath": "C:\\Users\\user\\OneDrive\\Documents\\Generation\\GIT\\Projeto\\ProjetoIntegrador\\ProjectEcommerce\\ProjectEcommerceTest\\ProjectEcommerceTest.csproj",
+      "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\user\\OneDrive\\Documents\\Generation\\GIT\\Projeto\\ProjetoIntegrador\\ProjectEcommerce\\ProjectEcommerceTest\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
@@ -8688,8 +8688,8 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "projectReferences": {
-            "C:\\Users\\User\\Desktop\\Joceline\\Gen\\Generation\\1 Para o Git\\ProjetoIntegrador\\ProjectEcommerce\\ProjectEcommerce\\ProjectEcommerce.csproj": {
-              "projectPath": "C:\\Users\\User\\Desktop\\Joceline\\Gen\\Generation\\1 Para o Git\\ProjetoIntegrador\\ProjectEcommerce\\ProjectEcommerce\\ProjectEcommerce.csproj"
+            "C:\\Users\\user\\OneDrive\\Documents\\Generation\\GIT\\Projeto\\ProjetoIntegrador\\ProjectEcommerce\\ProjectEcommerce\\ProjectEcommerce.csproj": {
+              "projectPath": "C:\\Users\\user\\OneDrive\\Documents\\Generation\\GIT\\Projeto\\ProjetoIntegrador\\ProjectEcommerce\\ProjectEcommerce\\ProjectEcommerce.csproj"
             }
           }
         }
