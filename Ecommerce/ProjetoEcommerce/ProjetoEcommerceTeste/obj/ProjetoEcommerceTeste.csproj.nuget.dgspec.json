@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Meu Computador\\Desktop\\GEN_Projeto_Integrador\\ProjetoIntegrador\\Ecommerce\\ProjetoEcommerce\\ProjetoEcommerce\\ProjetoEcommerce.csproj": {}
+    "C:\\Users\\Meu Computador\\Desktop\\GEN_Projeto_Integrador\\ProjetoIntegrador\\Ecommerce\\ProjetoEcommerce\\ProjetoEcommerceTeste\\ProjetoEcommerceTeste.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Meu Computador\\Desktop\\GEN_Projeto_Integrador\\ProjetoIntegrador\\Ecommerce\\ProjetoEcommerce\\ProjetoEcommerce\\ProjetoEcommerce.csproj": {
+    "C:\\Users\\Meu Computador\\Desktop\\GEN_Projeto_Integrador\\ProjetoIntegrador\\Ecommerce\\ProjetoEcommerce\\ProjetoEcommerceTeste\\ProjetoEcommerceTeste.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Meu Computador\\Desktop\\GEN_Projeto_Integrador\\ProjetoIntegrador\\Ecommerce\\ProjetoEcommerce\\ProjetoEcommerce\\ProjetoEcommerce.csproj",
-        "projectName": "ProjetoEcommerce",
-        "projectPath": "C:\\Users\\Meu Computador\\Desktop\\GEN_Projeto_Integrador\\ProjetoIntegrador\\Ecommerce\\ProjetoEcommerce\\ProjetoEcommerce\\ProjetoEcommerce.csproj",
+        "projectUniqueName": "C:\\Users\\Meu Computador\\Desktop\\GEN_Projeto_Integrador\\ProjetoIntegrador\\Ecommerce\\ProjetoEcommerce\\ProjetoEcommerceTeste\\ProjetoEcommerceTeste.csproj",
+        "projectName": "ProjetoEcommerceTeste",
+        "projectPath": "C:\\Users\\Meu Computador\\Desktop\\GEN_Projeto_Integrador\\ProjetoIntegrador\\Ecommerce\\ProjetoEcommerce\\ProjetoEcommerceTeste\\ProjetoEcommerceTeste.csproj",
         "packagesPath": "C:\\Users\\Meu Computador\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Meu Computador\\Desktop\\GEN_Projeto_Integrador\\ProjetoIntegrador\\Ecommerce\\ProjetoEcommerce\\ProjetoEcommerce\\obj\\",
+        "outputPath": "C:\\Users\\Meu Computador\\Desktop\\GEN_Projeto_Integrador\\ProjetoIntegrador\\Ecommerce\\ProjetoEcommerce\\ProjetoEcommerceTeste\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\Meu Computador\\AppData\\Roaming\\NuGet\\NuGet.Config",
@@ -40,19 +40,29 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "MSTest.TestAdapter": {
+              "target": "Package",
+              "version": "[2.2.7, )"
+            },
+            "MSTest.TestFramework": {
+              "target": "Package",
+              "version": "[2.2.7, )"
+            },
             "Microsoft.EntityFrameworkCore": {
               "target": "Package",
               "version": "[5.0.13, )"
             },
-            "Microsoft.EntityFrameworkCore.SqlServer": {
+            "Microsoft.EntityFrameworkCore.InMemory": {
               "target": "Package",
               "version": "[5.0.13, )"
             },
-            "Microsoft.EntityFrameworkCore.Tools": {
-              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
-              "suppressParent": "All",
+            "Microsoft.NET.Test.Sdk": {
               "target": "Package",
-              "version": "[5.0.13, )"
+              "version": "[16.11.0, )"
+            },
+            "coverlet.collector": {
+              "target": "Package",
+              "version": "[3.1.0, )"
             }
           },
           "imports": [
@@ -66,9 +76,6 @@
           "assetTargetFallback": true,
           "warn": true,
           "frameworkReferences": {
-            "Microsoft.AspNetCore.App": {
-              "privateAssets": "none"
-            },
             "Microsoft.NETCore.App": {
               "privateAssets": "all"
             }
