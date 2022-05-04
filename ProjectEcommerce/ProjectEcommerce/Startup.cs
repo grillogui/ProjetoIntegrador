@@ -1,10 +1,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using ProjectEcommerce.src.data;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,14 +27,21 @@ namespace ProjectEcommerce
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+            IConfigurationRoot config = new ConfigurationBuilder()
+                .SetBasePath(AppDomain.CurrentDomain.BaseDirectory)
+                .AddJsonFile("appsettings.json")
+                .Build();
+
+            services.AddDbContext<ProjectEcommerceContext>(opt => opt.UseSqlServer(config.GetConnectionString("DefaultConnection")));
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ProjectEcommerceContext context)
         {
             if (env.IsDevelopment())
             {
+                context.Database.EnsureCreated();
                 app.UseDeveloperExceptionPage();
             }
 

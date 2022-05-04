@@ -5797,19 +5797,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\olive\\.nuget\\packages\\": {}
+    "C:\\Users\\User\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\olive\\OneDrive\\Documentos\\DOTNETGen\\Git\\Projeto\\ProjetoIntegrador\\ProjectEcommerce\\ProjectEcommerce\\ProjectEcommerce.csproj",
+      "projectUniqueName": "C:\\Users\\User\\Desktop\\Joceline\\Gen\\Generation\\1 Para o Git\\ProjetoIntegrador\\ProjectEcommerce\\ProjectEcommerce\\ProjectEcommerce.csproj",
       "projectName": "ProjectEcommerce",
-      "projectPath": "C:\\Users\\olive\\OneDrive\\Documentos\\DOTNETGen\\Git\\Projeto\\ProjetoIntegrador\\ProjectEcommerce\\ProjectEcommerce\\ProjectEcommerce.csproj",
-      "packagesPath": "C:\\Users\\olive\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\olive\\OneDrive\\Documentos\\DOTNETGen\\Git\\Projeto\\ProjetoIntegrador\\ProjectEcommerce\\ProjectEcommerce\\obj\\",
+      "projectPath": "C:\\Users\\User\\Desktop\\Joceline\\Gen\\Generation\\1 Para o Git\\ProjetoIntegrador\\ProjectEcommerce\\ProjectEcommerce\\ProjectEcommerce.csproj",
+      "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\User\\Desktop\\Joceline\\Gen\\Generation\\1 Para o Git\\ProjetoIntegrador\\ProjectEcommerce\\ProjectEcommerce\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\olive\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
