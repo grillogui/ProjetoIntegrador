@@ -17,7 +17,6 @@ namespace ProjectEcommerce.src.repositories
     {
         void AddUser(AddUserDTO user);
         void UpdateUser(UpdateUserDTO user);
-        void DeleteUser(int id);
         UserModel GetUserById(int id);
         UserModel GetUserByEmail(string email);
         List<UserModel> GetUserByName(string name);

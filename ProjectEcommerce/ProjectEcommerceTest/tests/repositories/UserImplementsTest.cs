@@ -69,7 +69,6 @@ namespace ProjectEcommerceTest.tests.repositories
 
 
         // Test UpdateUser
-        [Ignore]
         [TestMethod]
         public void A02_UpdateUserReturnUpdatedUser()
         {
@@ -100,32 +99,9 @@ namespace ProjectEcommerceTest.tests.repositories
 
 
 
-        // Test DeleteUser
-        [TestMethod]
-        public void A03_DeletedUserReturnTwo()
-        {
-            //Given that I register users in the database
-            _repository.AddUser(
-            new AddUserDTO(
-            "joao@email.com",
-            "João Silva",
-            "79467828",
-            "VULNERABILIDADE",
-            "Rua das Amoras, 784"));
-
-            //When I delete this user
-            _repository.DeleteUser(5);
-
-            //Then, shoulbe be null
-            Assert.IsNull(_repository.GetUserById(5));
-        }
-
-
-
         // Test GetUserByID
-        [Ignore]
         [TestMethod]
-        public void A04_GetUserByIdReturnNotNullName()
+        public void A03_GetUserByIdReturnNotNullName()
         {
             //Given that I register an user in the database
             _repository.AddUser(
@@ -136,8 +112,8 @@ namespace ProjectEcommerceTest.tests.repositories
             "COMUM",
             "Rua das Margaridas, 9668"));
 
-            //When I search for id number 9
-            var user = _repository.GetUserById(9);
+            //When I search for id number 6
+            var user = _repository.GetUserById(6);
 
             //Then, it should return a not null element
 
@@ -151,9 +127,8 @@ namespace ProjectEcommerceTest.tests.repositories
 
 
         // Test GetUserByEmail
-        [Ignore]
         [TestMethod]
-        public void A05_GetUserByEmailReturnNotNull()
+        public void A04_GetUserByEmailReturnNotNull()
         {
             //Given that I register an user in the database
             _repository.AddUser(
@@ -174,9 +149,8 @@ namespace ProjectEcommerceTest.tests.repositories
 
 
         // Test GetUserByName
-        [Ignore]
         [TestMethod]
-        public void A06_GetUsersByNameReturnList()
+        public void A05_GetUsersByNameReturnList()
         {
             //Given that I register 3 users into database
             _repository.AddUser(
@@ -213,9 +187,8 @@ namespace ProjectEcommerceTest.tests.repositories
 
 
         // Test GetUserByType
-        [Ignore]
         [TestMethod]
-        public void A07_GetUsersByTypeReturnList()
+        public void A06_GetUsersByTypeReturnList()
         {
             //Given that I register 3 users into databasE
             _repository.AddUser(

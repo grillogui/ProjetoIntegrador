@@ -43,12 +43,6 @@ namespace ProjectEcommerce.src.repositories.implements
             _context.SaveChanges();
         }
 
-        public void DeleteUser(int id)
-        {
-            _context.Users.Remove(GetUserById(id));
-            _context.SaveChanges();
-        }
-
         public UserModel GetUserByEmail(string email)
         {
             return _context.Users.FirstOrDefault(u => u.Email == email);
