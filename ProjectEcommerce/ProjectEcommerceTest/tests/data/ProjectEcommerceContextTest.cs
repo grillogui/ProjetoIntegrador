@@ -6,6 +6,7 @@ using System.Linq;
 
 namespace ProjectEcommerceTest.tests.data
 {
+    [Ignore]
     [TestClass]
     public class ProjectEcommerceContextTest
     {

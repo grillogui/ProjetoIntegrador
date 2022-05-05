@@ -1,8 +1,8 @@
-﻿
+﻿using ProjectEcommerce.src.dtos;
 using ProjectEcommerce.src.models;
 using System.Collections.Generic;
 using System.Linq;
-using static ProjectEcommerce.src.dtos.UserDTO;
+
 
 namespace ProjectEcommerce.src.repositories
 {
