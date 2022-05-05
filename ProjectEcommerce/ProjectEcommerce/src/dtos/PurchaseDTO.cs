@@ -3,7 +3,7 @@
 namespace ProjectEcommerce.src.dtos
 {
     /// <summary>
-    /// <para>Resume:Implementing Methods and Constructors for the Purchase Class </para>
+    /// <para>Resume:Mirror class to add a new purchase</para>
     /// <para>Created by: Matheus Brazolin</para>
     /// <para>version: 1.0</para>
     /// <para>Date: 05/05/2022</para>
