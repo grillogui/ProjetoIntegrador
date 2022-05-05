@@ -130,6 +130,7 @@ namespace ProjectEcommerce.src.repositories.implements
             existingProduct.Price = product.Price;
             existingProduct.Image = product.Image;
             existingProduct.Description = product.Description;
+            existingProduct.Quantity = product.Quantity;
             _context.Products.Update(existingProduct);
             _context.SaveChanges();
         }
