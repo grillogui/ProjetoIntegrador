@@ -1,51 +1,109 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
 using BlogPessoal.src.dtos;
+using Microsoft.EntityFrameworkCore;
 using ProjectEcommerce.src.data;
 using ProjectEcommerce.src.models;
 
 namespace ProjectEcommerce.src.repositories.implements
 {
+    /// <summary>
+    /// <para>Resume: Class responsible for implement methos CRUD Product.</para>
+    /// <para>Created by: Ítalo Penha</para>
+    /// <para>Version: 1.0</para>
+    /// <para>Date: 05/05/2022</para>
+    /// </summary>
     public class ProductImplements : IProduct
     {
-        #region Atributos
+        #region Attributes
        
         private readonly ProjectEcommerceContext _context;
-        
-        #endregion Atributos
 
-            
-        #region Construtores
-		
+        #endregion Attributes
+
+
+        #region Constructors
+
+        /// <summary>
+        /// <para>Resume: Constructor of class.</para>
+        /// </summary>
+        /// <param name="context">ProjectEcommerceContext</param>
+
+
         public ProductImplements(ProjectEcommerceContext context)
         {
         	_context = context;
         }
-        
-        #endregion Construtores
 
-     
-        #region Métodos
+        #endregion Constructors
+
+
+        #region Methods
+
+        /// <summary>
+        /// <para>Resume: method for get product by id.</para>
+        /// <para>Created by: Ítalo Penha</para>
+        /// </summary>
+         
         public void DeleteProduct(int id)
         {
             _context.Products.Remove(GetProductById(id));
             _context.SaveChanges();
         }
 
+        /// <summary>
+        /// <para>Resume: method for get all products by list.</para>
+        /// <para>Created by: Ítalo Penha</para>
+        /// </summary>
+
         public List<ProductModel> GetAllProducts()
         {
             return _context.Products.ToList();
         }
 
+        /// <summary>
+        /// <para>Resume: method for get product by Id.</para>
+        /// <para>Created by: Ítalo Penha</para>
+        /// </summary>
+         
         public ProductModel GetProductById(int id)
         {
             return _context.Products.FirstOrDefault(p => p.Id == id);
         }
 
-        public List<ProductModel> GetProductBySearch(string name, string descriptionProduct)
+        /// <summary>
+        /// <para>Resume: method for get product by search.</para>
+        /// <para>Created by: Joceline Gutierrez</para>
+        /// </summary>
+
+        public List<ProductModel> GetProductBySearch(string nameProduct, string descriptionProduct)
         {
-            throw new System.NotImplementedException();
+            switch (nameProduct, descriptionProduct)
+            {
+                case (null, null):
+                    return GetAllProducts();
+
+                case (null, _):
+                    return _context.Products
+                            .Where(p => p.Description.Contains(descriptionProduct))
+                            .ToList();
+
+                case (_, null):
+                    return _context.Products
+                            .Where(p => p.Name.Contains(nameProduct))
+                            .ToList();
+
+                case (_, _):
+                    return _context.Products
+                            .Where(p => p.Description.Contains(descriptionProduct) & p.Name.Contains(nameProduct))
+                            .ToList();         
+            }
         }
+
+        /// <summary>
+        /// <para>Resume: method for add product.</para>
+        /// <para>Created by: Ítalo Penha</para>
+        /// </summary>
 
         public void NewProduct(NewProductDTO product)
         {
@@ -61,11 +119,22 @@ namespace ProjectEcommerce.src.repositories.implements
             _context.SaveChanges();
         }
 
-        public void UpdateProduct(UpdateProductDTO post)
+        /// <summary>
+        /// <para>Resume: method for update product.</para>
+        /// <para>Created by: Joceline Gutierrez</para>
+        /// </summary>
+
+        public void UpdateProduct(UpdateProductDTO product)
         {
-            throw new System.NotImplementedException();
+            var existingProduct = GetProductById(product.Id);
+            existingProduct.Name = product.Name;
+            existingProduct.Price = product.Price;
+            existingProduct.Image = product.Image;
+            existingProduct.Description = product.Description;
+            _context.Products.Update(existingProduct);
+            _context.SaveChanges();
         }
 
-        #endregion
+        #endregion Methods
     }
 }

@@ -43,6 +43,8 @@ namespace BlogPessoal.src.dtos
 
     public class UpdateProductDTO
     {
+        [Required]
+        public int Id { get; set; }
         
         [Required, StringLength(30)]
         public string Name { get; set; }
@@ -58,8 +60,9 @@ namespace BlogPessoal.src.dtos
         [Required]
         public string Quantity { get; set; }
 
-        public UpdateProductDTO(string name, float price, string image, string description, string quantity)
+        public UpdateProductDTO(int id, string name, float price, string image, string description, string quantity)
         {
+            Id = id;
             Name = name;
             Price = price;
             Image = image;
