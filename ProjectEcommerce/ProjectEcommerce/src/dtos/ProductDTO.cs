@@ -1,7 +1,6 @@
-
 using System.ComponentModel.DataAnnotations;
 
-namespace BlogPessoal.src.dtos
+namespace ProjectEcommerce.src.dtos
 {
     /// <summary>
     /// <para>Resume: Mirror class responsible for create a new product</para>

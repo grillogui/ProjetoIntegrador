@@ -1,8 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using BlogPessoal.src.dtos;
-using Microsoft.EntityFrameworkCore;
 using ProjectEcommerce.src.data;
+using ProjectEcommerce.src.dtos;
 using ProjectEcommerce.src.models;
 
 namespace ProjectEcommerce.src.repositories.implements
