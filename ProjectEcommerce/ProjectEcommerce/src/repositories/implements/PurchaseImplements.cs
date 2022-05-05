@@ -3,6 +3,8 @@ using ProjectEcommerce.src.dtos;
 using ProjectEcommerce.src.models;
 using System.Collections.Generic;
 using System.Linq;
+using ProjectEcommerce.src.repositories.implements;
+using Microsoft.EntityFrameworkCore;
 
 namespace ProjectEcommerce.src.repositories.implements
 {
@@ -31,7 +33,7 @@ namespace ProjectEcommerce.src.repositories.implements
             });
             _context.SaveChanges();
         }
-        public void DeletPurchase(int id)
+        public void DeletePurchase(int id)
         {
             _context.Purchases.Remove(GetPurchaseById(id));
             _context.SaveChanges();
@@ -39,22 +41,20 @@ namespace ProjectEcommerce.src.repositories.implements
 
         public List<PurchaseModel> GetAllPurchases()
         {
-            throw new System.NotImplementedException();
+            return _context.Purchases.ToList();
         }
 
         public PurchaseModel GetPurchaseById(int id)
         {
-            throw new System.NotImplementedException();
+            return _context.Purchases.FirstOrDefault(p => p.Id == id);
         }
 
         public List<PurchaseModel> GetPurchaseProduct(int productId)
         {
-            throw new System.NotImplementedException();
-        }
-
-        public List<PurchaseModel> GetPurchasesByUser(int userId)
-        {
-            throw new System.NotImplementedException();
+            return _context.Purchases
+                .Include(p => p.Items)
+                .Where(p => p.Items.Id == productId)
+                .ToList();
         }
         #endregion Methods
     }

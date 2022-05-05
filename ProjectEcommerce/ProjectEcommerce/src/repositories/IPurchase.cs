@@ -14,10 +14,9 @@ namespace ProjectEcommerce.src.repositories
     public interface IPurchase
     {
         void NewPurchase(NewPurchaseDTO purchase);
-        void DeletPurchase(int id);
+        void DeletePurchase(int id);
         PurchaseModel GetPurchaseById(int id);
         List<PurchaseModel> GetAllPurchases();
-        List <PurchaseModel> GetPurchasesByUser(int userId);
         List <PurchaseModel> GetPurchaseProduct(int productId);
     }
 }
