@@ -1,3 +1,4 @@
+
 using System.ComponentModel.DataAnnotations;
 
 namespace BlogPessoal.src.dtos
@@ -14,15 +15,15 @@ namespace BlogPessoal.src.dtos
         public string Name { get; set; }
 
         [Required, StringLength(100)]
-        public float Price { get; set; } 
+        public float Price { get; set; }
 
         public string Image { get; set; }
 
         [Required, StringLength(30)]
-        public string Description { get; set; } 
+        public string Description { get; set; }
 
         [Required]
-        public float Quantity { get; set; } 
+        public float Quantity { get; set; }
 
         public NewProductDTO(string name, float price, string image, string description, float quantity)
         {
@@ -45,22 +46,22 @@ namespace BlogPessoal.src.dtos
     {
         [Required]
         public int Id { get; set; }
-        
+
         [Required, StringLength(30)]
         public string Name { get; set; }
 
         [Required, StringLength(100)]
-        public float Price { get; set; } 
+        public float Price { get; set; }
 
         public string Image { get; set; }
 
         [Required, StringLength(30)]
-        public string Description { get; set; } 
+        public string Description { get; set; }
 
         [Required]
-        public string Quantity { get; set; }
+        public float Quantity { get; set; }
 
-        public UpdateProductDTO(int id, string name, float price, string image, string description, string quantity)
+        public UpdateProductDTO(int id, string name, float price, string image, string description, float quantity)
         {
             Id = id;
             Name = name;
