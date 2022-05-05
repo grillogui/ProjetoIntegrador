@@ -22,9 +22,9 @@ namespace BlogPessoal.src.dtos
         public string Description { get; set; } 
 
         [Required]
-        public string Quantity { get; set; } 
+        public float Quantity { get; set; } 
 
-        public NewProductDTO(string name, float price, string image, string description, string quantity)
+        public NewProductDTO(string name, float price, string image, string description, float quantity)
         {
             Name = name;
             Price = price;

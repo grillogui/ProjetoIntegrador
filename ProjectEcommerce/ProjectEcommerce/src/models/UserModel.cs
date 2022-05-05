@@ -6,7 +6,7 @@ using System.Text.Json.Serialization;
 namespace ProjectEcommerce.src.models
 {
     /// <summary>
-    /// <para>Resume:Implementing Methods and Constructors for the Users Class </para>
+    /// <para>Resume: Class responsible for representing users in the database </para>
     /// <para>Created by: Matheus Brazolin</para>
     /// <para>version: 1.0</para>
     /// <para>Date: 04/05/2022</para>

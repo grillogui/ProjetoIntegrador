@@ -4,7 +4,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace ProjectEcommerce.src.models
 {
     /// <summary>
-    /// <para>Resume:Implementing Methods and Constructors for the Purchase Class </para>
+    /// <para>Resume:Class responsible for representing purchases in the database </para>
     /// <para>Created by: Matheus Brazolin</para>
     /// <para>version: 1.0</para>
     /// <para>Date: 04/05/2022</para>
