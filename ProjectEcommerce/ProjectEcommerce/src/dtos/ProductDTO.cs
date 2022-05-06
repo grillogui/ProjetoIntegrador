@@ -16,6 +16,7 @@ namespace ProjectEcommerce.src.dtos
         [Required, StringLength(100)]
         public float Price { get; set; }
 
+        [Required]
         public string Image { get; set; }
 
         [Required, StringLength(30)]
@@ -52,6 +53,7 @@ namespace ProjectEcommerce.src.dtos
         [Required, StringLength(100)]
         public float Price { get; set; }
 
+        [Required]
         public string Image { get; set; }
 
         [Required, StringLength(30)]
