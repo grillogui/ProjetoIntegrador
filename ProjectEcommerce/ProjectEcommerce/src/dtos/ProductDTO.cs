@@ -11,6 +11,9 @@ namespace ProjectEcommerce.src.dtos
     public class NewProductDTO
     {
         [Required, StringLength(30)]
+        public int Id { get; set; }
+
+        [Required, StringLength(30)]
         public string Name { get; set; }
 
         [Required, StringLength(100)]
@@ -25,8 +28,9 @@ namespace ProjectEcommerce.src.dtos
         [Required]
         public float Quantity { get; set; }
 
-        public NewProductDTO(string name, float price, string image, string description, float quantity)
+        public NewProductDTO(int id, string name, float price, string image, string description, float quantity)
         {
+            Id = id;
             Name = name;
             Price = price;
             Image = image;
