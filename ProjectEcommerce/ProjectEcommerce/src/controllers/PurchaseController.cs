@@ -58,7 +58,7 @@ namespace ProjectEcommerce.src.controllers
             
         }
 
-        [HttpGet("id /{idPurchase")]
+        [HttpGet("id /{idPurchase}")]
 
         public IActionResult GetPurchaseProduct([FromRoute]int idPurchase)
         {

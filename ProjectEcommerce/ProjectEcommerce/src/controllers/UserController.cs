@@ -67,7 +67,7 @@ namespace ProjectEcommerce.src.controllers
             return Ok(user);
         }
 
-        [HttpGet]
+        [HttpGet("name")]
         public IActionResult GetUserByName([FromQuery] string nameUser)
         {
             var users = _repository.GetUserByName(nameUser);
@@ -77,7 +77,7 @@ namespace ProjectEcommerce.src.controllers
             return Ok(users);
         }
 
-        [HttpGet]
+        [HttpGet("type")]
         public IActionResult GetUserByType([FromQuery] string typeUser)
         {
             var users = _repository.GetUserByType(typeUser);
