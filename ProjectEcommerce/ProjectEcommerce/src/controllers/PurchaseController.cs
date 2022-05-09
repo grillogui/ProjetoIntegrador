@@ -48,6 +48,24 @@ namespace ProjectEcommerce.src.controllers
             return Ok(list);
         }
 
+        [HttpGet("id /{idPurchase}")]
+
+        public IActionResult GetPurchaseById([FromRoute]int idPurchase)
+        {
+            var purchase = _repository.GetPurchaseById(idPurchase);
+            if (purchase == null) return NotFound();
+            return Ok(purchase);
+            
+        }
+
+        [HttpGet("id /{idPurchase")]
+
+        public IActionResult GetPurchaseProduct([FromRoute]int idPurchase)
+        {
+            var purchase = _repository.GetPurchaseProduct(idPurchase);
+            if (purchase == null) return NoContent();
+            return Ok(purchase);
+        }
 
 
         #endregion

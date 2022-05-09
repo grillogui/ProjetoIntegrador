@@ -152,7 +152,7 @@ namespace ProjectEcommerceTest.tests.repositories
 
             var user = _repository.GetPurchaseById(2);
 
-            Assert.AreEqual("matheus@email.com",);
+            Assert.AreEqual("matheus@email.com", user.Buyer.Email);
 
         }
 

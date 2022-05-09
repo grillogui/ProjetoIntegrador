@@ -17,6 +17,6 @@ namespace ProjectEcommerce.src.repositories
         void DeletePurchase(int id);
         PurchaseModel GetPurchaseById(int id);
         List<PurchaseModel> GetAllPurchases();
-        List<PurchaseModel> GetPurchaseProduct(int productId);
+        int GetPurchaseProduct(int productId);
     }
 }

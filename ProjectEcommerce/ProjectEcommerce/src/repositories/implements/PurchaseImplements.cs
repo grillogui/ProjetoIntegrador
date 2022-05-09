@@ -49,11 +49,11 @@ namespace ProjectEcommerce.src.repositories.implements
             return _context.Purchases.FirstOrDefault(p => p.Id == id);
         }
 
-        public List<PurchaseModel> GetPurchaseProduct (int productId)
+        public int GetPurchaseProduct (int productId)
         {
             return _context.Purchases
                 .Include(p => p.Items)
-                .Where(p => p.Items.Id == productId);
+                .Where(p => p.Items.Id == productId).ToList().Count + 1;
         }
         #endregion
     }
