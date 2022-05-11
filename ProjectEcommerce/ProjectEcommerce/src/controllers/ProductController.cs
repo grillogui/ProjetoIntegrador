@@ -31,7 +31,7 @@ namespace ProjectEcommerce.src.controllers
             return NoContent();
         }
 
-        [HttpGet]
+        [HttpGet("list")]
         public IActionResult GetAllProducts()
         {
             var list = _repository.GetAllProducts();
@@ -47,7 +47,7 @@ namespace ProjectEcommerce.src.controllers
             return Ok(Product);
         }
 
-        [HttpGet]
+        [HttpGet("search")] 
         public IActionResult GetProductBySearch(
                 [FromQuery] string nameProduct,
                 [FromQuery] string descriptionProduct)
@@ -64,7 +64,7 @@ namespace ProjectEcommerce.src.controllers
         {
             if (!ModelState.IsValid) return BadRequest();
             _repository.NewProduct(product);
-            return Created($"api/Products/id/{product.Id}", product);
+            return Created($"api/Products/id/{product.Name}", product);
         }
 
         [HttpPut]

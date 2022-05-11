@@ -24,8 +24,7 @@ namespace ProjectEcommerce.src.models
             [StringLength(50)]
             public string Name { get; set; }
 
-            [Required]
-            [StringLength(30)]
+            [Required]            
             public float Price { get; set; }
 
             [Required]
@@ -36,8 +35,7 @@ namespace ProjectEcommerce.src.models
             [StringLength(255)]
             public string Description { get; set; }
 
-            [Required]
-            [StringLength(30)]
+            [Required]            
             public float Quantity { get; set; }
 
             [JsonIgnore]

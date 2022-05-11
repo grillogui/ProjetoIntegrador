@@ -10,14 +10,12 @@ namespace ProjectEcommerce.src.dtos
     /// </summary>
     public class NewProductDTO
     {
-        [Required, StringLength(30)]
-        public int Id { get; set; }
 
         [Required, StringLength(30)]
         public string Name { get; set; }
 
-        [Required, StringLength(100)]
-        public float Price { get; set; }
+        [Required]
+        public float Price { get; set; } 
 
         [Required]
         public string Image { get; set; }
@@ -28,9 +26,8 @@ namespace ProjectEcommerce.src.dtos
         [Required]
         public float Quantity { get; set; }
 
-        public NewProductDTO(int id, string name, float price, string image, string description, float quantity)
+        public NewProductDTO(string name, float price, string image, string description, float quantity)
         {
-            Id = id;
             Name = name;
             Price = price;
             Image = image;
@@ -54,7 +51,7 @@ namespace ProjectEcommerce.src.dtos
         [Required, StringLength(30)]
         public string Name { get; set; }
 
-        [Required, StringLength(100)]
+        [Required]
         public float Price { get; set; }
 
         [Required]

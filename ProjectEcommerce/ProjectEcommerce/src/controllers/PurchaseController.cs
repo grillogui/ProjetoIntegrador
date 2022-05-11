@@ -38,7 +38,7 @@ namespace ProjectEcommerce.src.controllers
             return NoContent();
         }
 
-        [HttpGet]
+        [HttpGet("list")] 
         public IActionResult GetAllPurchases()
         {
             var list = _repository.GetAllPurchases();
@@ -48,7 +48,7 @@ namespace ProjectEcommerce.src.controllers
             return Ok(list);
         }
 
-        [HttpGet("id /{idPurchase}")]
+        [HttpGet("id/{idPurchase}")]
 
         public IActionResult GetPurchaseById([FromRoute]int idPurchase)
         {
@@ -58,12 +58,12 @@ namespace ProjectEcommerce.src.controllers
             
         }
 
-        [HttpGet("id /{idPurchase}")]
+        [HttpGet("prod/{purchaseProd}")] //mudei o nome pq estava conflitando com o de cima, não deu certo os testes ver o que esta de errado
 
         public IActionResult GetPurchaseProduct([FromRoute]int idPurchase)
         {
             var purchase = _repository.GetPurchaseProduct(idPurchase);
-            if (purchase == null) return NoContent();
+            if (purchase == null) return NoContent();  
             return Ok(purchase);
         }
 

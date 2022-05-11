@@ -35,7 +35,6 @@ namespace ProjectEcommerceTest.tests.repositories
             //GIVEN that I register 4 products into Database
             _repository.NewProduct(
                 new NewProductDTO(
-                    1,
                     "Banana",
                     8.00f,
                     "foto de bananinha",
@@ -44,7 +43,6 @@ namespace ProjectEcommerceTest.tests.repositories
 
             _repository.NewProduct(
                 new NewProductDTO(
-                    2,
                     "Maçã",
                     5.54f,
                     "fotinho maçã.img",
@@ -53,7 +51,6 @@ namespace ProjectEcommerceTest.tests.repositories
 
             _repository.NewProduct(
                 new NewProductDTO(
-                    3,
                     "Manga",
                     10.00f,
                     "imagem manga",
@@ -62,7 +59,6 @@ namespace ProjectEcommerceTest.tests.repositories
 
             _repository.NewProduct(
                 new NewProductDTO(
-                    4,
                     "Maracujá",
                     7.50f,
                     "fotinho maracujá.img",
@@ -86,7 +82,6 @@ namespace ProjectEcommerceTest.tests.repositories
            // GIVEN that the product is in the system
            _repository.NewProduct(
                 new NewProductDTO(
-                    1,
                     "Maracujá",
                     7.50f,
                     "fotinho maracujá.img",
@@ -143,7 +138,6 @@ namespace ProjectEcommerceTest.tests.repositories
             //GIVEN that the product is in the system
             _repository.NewProduct(
                 new NewProductDTO(
-                    8,
                     "Maracujá",
                     7.50f,
                     "fotinho maracujá.img",
@@ -169,7 +163,6 @@ namespace ProjectEcommerceTest.tests.repositories
             //GIVEN that I register 3 products
             _repository.NewProduct(
                 new NewProductDTO(
-                    9,
                     "Alface",
                     3.33f,
                     "fotinho alface.img",
@@ -178,7 +171,6 @@ namespace ProjectEcommerceTest.tests.repositories
 
             _repository.NewProduct(
                 new NewProductDTO(
-                    10,
                     "Cebola",
                     7.80f,
                     "cebola.img",
@@ -186,8 +178,7 @@ namespace ProjectEcommerceTest.tests.repositories
                     8));
 
             _repository.NewProduct(
-                new NewProductDTO(11,
-
+                new NewProductDTO(
                     "Cenoura",
                     5.50f,
                     "fotinho cenorinha.img",
@@ -213,7 +204,7 @@ namespace ProjectEcommerceTest.tests.repositories
 
             //GIVE that I register 1 products 
             _repository.NewProduct(
-                new NewProductDTO(12,
+                new NewProductDTO(
                     "Limão",
                     4.50f,
                     "limãozinho.png",
@@ -242,7 +233,7 @@ namespace ProjectEcommerceTest.tests.repositories
 
             //GIVEN that I register 4 products into Database
             _repository.NewProduct(
-                new NewProductDTO(13,
+                new NewProductDTO(
                     "Banana",
                     8.00f,
                     "foto de bananinha",
@@ -250,7 +241,7 @@ namespace ProjectEcommerceTest.tests.repositories
                     12));
 
             _repository.NewProduct(
-                new NewProductDTO(14,
+                new NewProductDTO(
                     "Maçã",
                     5.54f,
                     "fotinho maçã.img",
@@ -258,7 +249,7 @@ namespace ProjectEcommerceTest.tests.repositories
                     8));
 
             _repository.NewProduct(
-                new NewProductDTO(15,
+                new NewProductDTO(
                     "Manga",
                     10.00f,
                     "imagem manga",
@@ -266,7 +257,7 @@ namespace ProjectEcommerceTest.tests.repositories
                     20));
 
             _repository.NewProduct(
-                new NewProductDTO(16,
+                new NewProductDTO(
                     "Maracujá",
                     7.50f,
                     "fotinho maracujá.img",
