@@ -14,8 +14,8 @@ namespace ProjectEcommerce.src.services
     public interface IAuthentication
     {
         string EncodePassword(string password);
-        Task CreatedUserNotDuplicatedAsync(AddUserDTO dto);
+        void CreatedUserNotDuplicated(AddUserDTO dto);
         string GenerateToken(UserModel user);
-        Task<AuthorizationO> GetAuthorizationAsync(AuthenticationDTO dto);
+        AuthorizationDTO GetAuthorization(AuthenticationDTO dto);
     }
 }

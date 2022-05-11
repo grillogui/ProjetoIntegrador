@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using ProjectEcommerce.src.utilities;
+using System.ComponentModel.DataAnnotations;
 
 namespace BlogPessoal.src.dtos
 {
