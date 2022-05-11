@@ -46,14 +46,21 @@ namespace ProjectEcommerce.src.repositories.implements
 
         public PurchaseModel GetPurchaseById(int id)
         {
-            return _context.Purchases.FirstOrDefault(p => p.Id == id);
-        }
-
-        public int GetPurchaseProduct (int productId)
-        {
             return _context.Purchases
                 .Include(p => p.Items)
-                .Where(p => p.Items.Id == productId).ToList().Count + 1;
+                .Include(p => p.Buyer)
+                .FirstOrDefault(p => p.Id == id);
+        }
+
+        public int GetQuantityPurchaseProduct (int productId)
+        {
+            var quantity = _context.Purchases
+                .Include(p => p.Items)
+                .Include(p => p.Buyer)
+                .Where(p => p.Items.Id == productId).ToList().Count;
+            if(quantity == 0) return 0;
+
+            return quantity + 1;
         }
         #endregion
     }

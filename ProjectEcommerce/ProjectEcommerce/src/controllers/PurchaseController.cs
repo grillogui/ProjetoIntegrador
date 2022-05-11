@@ -58,12 +58,12 @@ namespace ProjectEcommerce.src.controllers
             
         }
 
-        [HttpGet("prod/{purchaseProd}")] //mudei o nome pq estava conflitando com o de cima, não deu certo os testes ver o que esta de errado
+        [HttpGet("prod/{idProduct}")] 
 
-        public IActionResult GetPurchaseProduct([FromRoute]int idPurchase)
+        public IActionResult GetQuantityPurchaseProduct([FromRoute]int idProduct)
         {
-            var purchase = _repository.GetPurchaseProduct(idPurchase);
-            if (purchase == null) return NoContent();  
+            var purchase = _repository.GetPurchaseProduct(idProduct);
+              
             return Ok(purchase);
         }
 
