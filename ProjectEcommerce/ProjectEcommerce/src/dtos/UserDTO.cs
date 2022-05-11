@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using ProjectEcommerce.src.utilities;
+using System.ComponentModel.DataAnnotations;
 
 namespace ProjectEcommerce.src.dtos
 {
@@ -23,12 +24,12 @@ namespace ProjectEcommerce.src.dtos
         public string Password { get; set; }
 
         [Required, StringLength(30)]
-        public string Type { get; set; }
+        public TypeUser Type { get; set; }
 
         [Required, StringLength(255)]
         public string Address { get; set; }
 
-        public AddUserDTO(string email, string name, string password, string type, string address)
+        public AddUserDTO(string email, string name, string password, TypeUser type, string address)
         {
             Email = email;
             Name = name;
@@ -57,12 +58,12 @@ namespace ProjectEcommerce.src.dtos
         public string Password { get; set; }
 
         [Required, StringLength(30)]
-        public string Type { get; set; }
+        public TypeUser Type { get; set; }
 
         [Required, StringLength(255)]
         public string Address { get; set; }
 
-        public UpdateUserDTO(int id, string name, string password, string type, string address)
+        public UpdateUserDTO(int id, string name, string password, TypeUser type, string address)
         {
             Id = id;
             Name = name;

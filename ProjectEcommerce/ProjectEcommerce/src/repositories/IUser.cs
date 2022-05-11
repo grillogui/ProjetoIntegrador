@@ -1,5 +1,6 @@
 ﻿using ProjectEcommerce.src.dtos;
 using ProjectEcommerce.src.models;
+using ProjectEcommerce.src.utilities;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -20,6 +21,6 @@ namespace ProjectEcommerce.src.repositories
         UserModel GetUserById(int id);
         UserModel GetUserByEmail(string email);
         List<UserModel> GetUserByName(string name);
-        List<UserModel> GetUserByType(string type);
+        List<UserModel> GetUserByType(TypeUser type);
     }
 }

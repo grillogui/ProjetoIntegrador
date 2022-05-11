@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using ProjectEcommerce.src.utilities;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 using System.Text.Json.Serialization;
@@ -33,7 +34,7 @@ namespace ProjectEcommerce.src.models
 
         [Required]
         [StringLength(30)]
-        public string Type { get; set; }
+        public  TypeUser Type { get; set; }
        
         [Required]
         [StringLength(255)]
