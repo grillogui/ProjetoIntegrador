@@ -1,9 +1,12 @@
 ﻿using BlogPessoal.src.dtos;
 using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 using ProjectEcommerce.src.dtos;
 using ProjectEcommerce.src.models;
 using ProjectEcommerce.src.repositories;
 using System;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,7 +18,7 @@ namespace ProjectEcommerce.src.services.implements
     /// <para>Version: 1.0</para>
     /// <para>Date: 11/05/2022</para>
     /// </summary>
-     
+
     public class AuthenticationServices : IAuthentication
     {
         #region Attributes
@@ -69,7 +72,24 @@ namespace ProjectEcommerce.src.services.implements
 
         public string GenerateToken(UserModel user)
         {
-            throw new System.NotImplementedException();
+            var tokenHandler = new JwtSecurityTokenHandler();
+            var key = Encoding.ASCII.GetBytes(Configuration["Settings:Secret"]);
+            var tokenDescription = new SecurityTokenDescriptor
+            {
+                Subject = new ClaimsIdentity(
+                new Claim[]
+                {
+                new Claim(ClaimTypes.Email, user.Email.ToString()),
+                new Claim(ClaimTypes.Role, user.Type.ToString())
+                }),
+                Expires = DateTime.UtcNow.AddHours(2),
+                SigningCredentials = new SigningCredentials(
+                    new SymmetricSecurityKey(key),
+                    SecurityAlgorithms.HmacSha256Signature
+            )
+            };
+            var token = tokenHandler.CreateToken(tokenDescription);
+            return tokenHandler.WriteToken(token);
         }
 
         /// <summary>
@@ -79,7 +99,7 @@ namespace ProjectEcommerce.src.services.implements
         /// <param name="dto">UserLoginDTO</param>
         /// <returns>AuthorizationDTO</returns>
 
-        public AuthorizationDTO GetAuthorization(AuthenticateDTO dto)
+        public AuthorizationDTO GetAuthorization(AuthenticationDTO dto)
         {
             var user = _repository.GetUserByEmail(dto.Email);
 

@@ -1,4 +1,5 @@
 using System.Threading.Tasks;
+using BlogPessoal.src.dtos;
 using ProjectEcommerce.src.dtos;
 using ProjectEcommerce.src.models;
 
