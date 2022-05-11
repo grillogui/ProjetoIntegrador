@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using ProjectEcommerce.src.dtos;
 using ProjectEcommerce.src.repositories;
 
@@ -23,6 +24,7 @@ namespace ProjectEcommerce.src.controllers
         #region Methods
 
         [HttpPost]
+        [Authorize(Roles = "REGULAR, VULNERABILITY,")]
         public IActionResult NewPurchase([FromBody] NewPurchaseDTO purchase)
         {
             if (!ModelState.IsValid) return BadRequest();
@@ -32,13 +34,15 @@ namespace ProjectEcommerce.src.controllers
         }
 
         [HttpDelete("delete/{idPurchase}")]
+        [Authorize(Roles = "REGULAR, VULNERABILITY, ADMINISTRATOR")]
         public IActionResult DeletePurchase([FromRoute] int idPurchase)
         {
             _repository.DeletePurchase(idPurchase);
             return NoContent();
         }
 
-        [HttpGet("list")] 
+        [HttpGet("list")]
+        [Authorize(Roles = "ADMINISTRATOR")]
         public IActionResult GetAllPurchases()
         {
             var list = _repository.GetAllPurchases();
@@ -49,7 +53,7 @@ namespace ProjectEcommerce.src.controllers
         }
 
         [HttpGet("id/{idPurchase}")]
-
+        [Authorize(Roles = "ADMINISTRATOR")]
         public IActionResult GetPurchaseById([FromRoute]int idPurchase)
         {
             var purchase = _repository.GetPurchaseById(idPurchase);
@@ -58,11 +62,11 @@ namespace ProjectEcommerce.src.controllers
             
         }
 
-        [HttpGet("prod/{idProduct}")] 
-
+        [HttpGet("prod/{idProduct}")]
+        [Authorize(Roles = "ADMINISTRATOR")]
         public IActionResult GetQuantityPurchaseProduct([FromRoute]int idProduct)
         {
-            var purchase = _repository.GetPurchaseProduct(idProduct);
+            var purchase = _repository.GetQuantityPurchaseProduct(idProduct);
               
             return Ok(purchase);
         }

@@ -1,6 +1,7 @@
 ﻿using ProjectEcommerce.src.dtos;
 using ProjectEcommerce.src.repositories;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Authorization;
 
 namespace ProjectEcommerce.src.controllers
 {
@@ -25,6 +26,7 @@ namespace ProjectEcommerce.src.controllers
         #region Methods
 
         [HttpDelete("delete/{idProduct}")]
+        [Authorize(Roles = "ADMINISTRATOR")]
         public IActionResult DeleteProduct([FromRoute] int idProduct)
         {
             _repository.DeleteProduct(idProduct);
@@ -32,6 +34,7 @@ namespace ProjectEcommerce.src.controllers
         }
 
         [HttpGet("list")]
+        [Authorize(Roles = "REGULAR, VULNERABILITY, ADMINISTRATOR")]
         public IActionResult GetAllProducts()
         {
             var list = _repository.GetAllProducts();
@@ -40,6 +43,7 @@ namespace ProjectEcommerce.src.controllers
         }
 
         [HttpGet("id/{idProduct}")]
+        [Authorize(Roles = "REGULAR, VULNERABILITY, ADMINISTRATOR")]
         public IActionResult GetProductById([FromRoute] int idProduct)
         {
             var Product = _repository.GetProductById(idProduct);
@@ -47,7 +51,8 @@ namespace ProjectEcommerce.src.controllers
             return Ok(Product);
         }
 
-        [HttpGet("search")] 
+        [HttpGet("search")]
+        [Authorize(Roles = "REGULAR, VULNERABILITY, ADMINISTRATOR")]
         public IActionResult GetProductBySearch(
                 [FromQuery] string nameProduct,
                 [FromQuery] string descriptionProduct)
@@ -60,6 +65,7 @@ namespace ProjectEcommerce.src.controllers
         }
 
         [HttpPost]
+        [Authorize(Roles = "ADMINISTRATOR")]
         public IActionResult NewProduct([FromBody] NewProductDTO product)
         {
             if (!ModelState.IsValid) return BadRequest();
@@ -68,6 +74,7 @@ namespace ProjectEcommerce.src.controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "ADMINISTRATOR")]
         public IActionResult UpdateProduct([FromBody] UpdateProductDTO product)
         {
             if (!ModelState.IsValid) return BadRequest();

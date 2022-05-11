@@ -1,6 +1,7 @@
 ﻿using ProjectEcommerce.src.data;
 using ProjectEcommerce.src.dtos;
 using ProjectEcommerce.src.models;
+using ProjectEcommerce.src.utilities;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -58,9 +59,9 @@ namespace ProjectEcommerce.src.repositories.implements
             return _context.Users.Where(u => u.Name.Contains(name)).ToList();
         }
 
-        public List<UserModel> GetUserByType(string type)
+        public List<UserModel> GetUserByType(TypeUser type)
         {
-            return _context.Users.Where(u => u.Type.Contains(type)).ToList();
+            return _context.Users.Where(u => u.Type == (type)).ToList();
         }
 
         public void UpdateUser(UpdateUserDTO user)

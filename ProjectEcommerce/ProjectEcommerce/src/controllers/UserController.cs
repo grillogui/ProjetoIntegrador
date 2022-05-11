@@ -1,7 +1,10 @@
 ﻿using ProjectEcommerce.src.dtos;
 using ProjectEcommerce.src.repositories;
 using Microsoft.AspNetCore.Mvc;
-
+using ProjectEcommerce.src.services;
+using Microsoft.AspNetCore.Authorization;
+using System;
+using ProjectEcommerce.src.utilities;
 
 namespace ProjectEcommerce.src.controllers
 {
@@ -22,32 +25,42 @@ namespace ProjectEcommerce.src.controllers
         #region Atributes
 
         private readonly IUser _repository;
+        private readonly IAuthentication _services;
 
         #endregion
 
         #region Constructors
 
-        public UserController(IUser repository)
+        public UserController(IUser repository, IAuthentication service)
         {
             _repository = repository;
+            _services = service; 
         }
-
 
         #endregion
 
         #region Methods
 
         [HttpPost]
+        [AllowAnonymous]
         public IActionResult AddUser([FromBody] AddUserDTO user)
         {
             if (!ModelState.IsValid) return BadRequest();
 
-            _repository.AddUser(user);
+            try
+            {
+                _services.CreatedUserNotDuplicated(user);
+                return Created($"api/Users/{user.Email}", user);
+            }
+            catch (Exception ex)
+            {
+                return Unauthorized(ex.Message);
+            }
 
-            return Created($"api/Users/{user.Email}", user);
         }
 
         [HttpGet("email/{emailUser}")]
+        [Authorize(Roles = "REGULAR, VULNERABILITY, ADMINISTRATOR")]
         public IActionResult GetUserByEmail([FromRoute] string emailUser)
         {
             var user = _repository.GetUserByEmail(emailUser);
@@ -58,6 +71,7 @@ namespace ProjectEcommerce.src.controllers
         }
 
         [HttpGet("id/{idUser}")]
+        [Authorize(Roles = "REGULAR, VULNERABILITY, ADMINISTRATOR")]
         public IActionResult GetUserById([FromRoute] int idUser)
         {
             var user = _repository.GetUserById(idUser);
@@ -68,6 +82,7 @@ namespace ProjectEcommerce.src.controllers
         }
 
         [HttpGet("name")]
+        [Authorize(Roles = "REGULAR, VULNERABILITY, ADMINISTRATOR")]
         public IActionResult GetUserByName([FromQuery] string nameUser)
         {
             var users = _repository.GetUserByName(nameUser);
@@ -78,7 +93,8 @@ namespace ProjectEcommerce.src.controllers
         }
 
         [HttpGet("type")]
-        public IActionResult GetUserByType([FromQuery] string typeUser)
+        [Authorize(Roles = "REGULAR, VULNERABILITY, ADMINISTRATOR")]
+        public IActionResult GetUserByType([FromQuery] TypeUser typeUser)
         {
             var users = _repository.GetUserByType(typeUser);
 
@@ -88,10 +104,11 @@ namespace ProjectEcommerce.src.controllers
         }
 
         [HttpPut]
+        [Authorize(Roles = "REGULAR, VULNERABILITY, ADMINISTRATOR")]
         public IActionResult UpdateUser([FromBody] UpdateUserDTO user)
         {
             if (!ModelState.IsValid) return BadRequest();
-
+            user.Password = _services.EncodePassword(user.Password);
             _repository.UpdateUser(user);
             return Ok(user);
         }
