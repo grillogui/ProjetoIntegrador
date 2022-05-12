@@ -40,7 +40,7 @@ namespace ProjectEcommerce.src.repositories.implements
             await _context.SaveChangesAsync();
         }
 
-        public async Task<List<PurchaseModel>> GetAllPurchases()
+        public async Task<List<PurchaseModel>> GetAllPurchasesAsync()
         {
             return await _context.Purchases.ToListAsync();
         }
@@ -55,13 +55,13 @@ namespace ProjectEcommerce.src.repositories.implements
 
         public async Task <int> GetQuantityPurchaseProductAsync (int productId)
         {
-            var quantity = await _context.Purchases 
+            var list = await _context.Purchases 
                 .Include(p => p.Items)
                 .Include(p => p.Buyer)
-                .Where(p => p.Items.Id == productId).ToListAsync().Count;
-            if(quantity == 0)  return 0;
+                .Where(p => p.Items.Id == productId).ToListAsync();
+            if(list.Count == 0)  return 0;
 
-            return quantity + 1;
+            return list.Count + 1;
         }
         #endregion
     }

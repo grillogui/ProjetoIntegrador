@@ -18,6 +18,6 @@ namespace ProjectEcommerce.src.repositories
         Task DeletePurchaseAsync(int id);
         Task <PurchaseModel> GetPurchaseByIdAsync(int id);
         Task<List<PurchaseModel>> GetAllPurchasesAsync();
-        Task <int> GetQuantityPurchaseProduct (int productId);
+        Task <int> GetQuantityPurchaseProductAsync (int productId);
     }
 }
