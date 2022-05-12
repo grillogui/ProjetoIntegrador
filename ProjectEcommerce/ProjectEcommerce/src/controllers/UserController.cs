@@ -1,10 +1,13 @@
 ﻿using ProjectEcommerce.src.dtos;
 using ProjectEcommerce.src.repositories;
-using Microsoft.AspNetCore.Mvc;
+using ProjectEcommerce.src.utilities;
 using ProjectEcommerce.src.services;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using System;
-using ProjectEcommerce.src.utilities;
+using System.Threading.Tasks;
+using System.Collections.Generic;
+
 
 namespace ProjectEcommerce.src.controllers
 {
@@ -43,13 +46,13 @@ namespace ProjectEcommerce.src.controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public IActionResult AddUser([FromBody] AddUserDTO user)
+        public async Task<IActionResult> AddUserAsync([FromBody] AddUserDTO user)
         {
             if (!ModelState.IsValid) return BadRequest();
 
             try
             {
-                _services.CreatedUserNotDuplicated(user);
+                await _services.CreatedUserNotDuplicatedAsync(user);
                 return Created($"api/Users/{user.Email}", user);
             }
             catch (Exception ex)
@@ -61,9 +64,9 @@ namespace ProjectEcommerce.src.controllers
 
         [HttpGet("email/{emailUser}")]
         [Authorize(Roles = "REGULAR, VULNERABILITY, ADMINISTRATOR")]
-        public IActionResult GetUserByEmail([FromRoute] string emailUser)
+        public async Task<IActionResult> GetUserByEmailAsync([FromRoute] string emailUser)
         {
-            var user = _repository.GetUserByEmail(emailUser);
+            var user = await _repository.GetUserByEmailAsync(emailUser);
 
             if (user == null) return NotFound();
 
@@ -72,9 +75,9 @@ namespace ProjectEcommerce.src.controllers
 
         [HttpGet("id/{idUser}")]
         [Authorize(Roles = "REGULAR, VULNERABILITY, ADMINISTRATOR")]
-        public IActionResult GetUserById([FromRoute] int idUser)
+        public async  Task<IActionResult> GetUserByIdAsync([FromRoute] int idUser)
         {
-            var user = _repository.GetUserById(idUser);
+            var user = await _repository.GetUserByIdAsync(idUser);
 
             if (user == null) return NotFound();
 
@@ -83,9 +86,9 @@ namespace ProjectEcommerce.src.controllers
 
         [HttpGet("name")]
         [Authorize(Roles = "REGULAR, VULNERABILITY, ADMINISTRATOR")]
-        public IActionResult GetUserByName([FromQuery] string nameUser)
+        public async  Task<IActionResult> GetUserByNameAsync([FromQuery] string nameUser)
         {
-            var users = _repository.GetUserByName(nameUser);
+            var users = await _repository.GetUserByNameAsync(nameUser);
 
             if (users.Count < 1) return NoContent();
 
@@ -94,9 +97,9 @@ namespace ProjectEcommerce.src.controllers
 
         [HttpGet("type")]
         [Authorize(Roles = "REGULAR, VULNERABILITY, ADMINISTRATOR")]
-        public IActionResult GetUserByType([FromQuery] TypeUser typeUser)
+        public async Task<IActionResult> GetUserByTypeAsync([FromQuery] TypeUser typeUser)
         {
-            var users = _repository.GetUserByType(typeUser);
+            var users = await _repository.GetUserByTypeAsync(typeUser);
 
             if (users.Count < 1) return NoContent();
 
@@ -105,11 +108,13 @@ namespace ProjectEcommerce.src.controllers
 
         [HttpPut]
         [Authorize(Roles = "REGULAR, VULNERABILITY, ADMINISTRATOR")]
-        public IActionResult UpdateUser([FromBody] UpdateUserDTO user)
+        public async Task<IActionResult> UpdateUserAsync([FromBody] UpdateUserDTO user)
         {
             if (!ModelState.IsValid) return BadRequest();
+
             user.Password = _services.EncodePassword(user.Password);
-            _repository.UpdateUser(user);
+
+            await _repository.UpdateUserAsync(user);
             return Ok(user);
         }
 
