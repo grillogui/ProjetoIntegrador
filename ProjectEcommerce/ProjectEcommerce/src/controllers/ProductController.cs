@@ -1,7 +1,7 @@
 ﻿using ProjectEcommerce.src.dtos;
 using ProjectEcommerce.src.repositories;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Authorization;
+using System.Threading.Tasks;
 
 namespace ProjectEcommerce.src.controllers
 {
@@ -26,65 +26,60 @@ namespace ProjectEcommerce.src.controllers
         #region Methods
 
         [HttpDelete("delete/{idProduct}")]
-        [Authorize(Roles = "ADMINISTRATOR")]
-        public IActionResult DeleteProduct([FromRoute] int idProduct)
+        public async Task<ActionResult> DeleteProductAsync([FromRoute] int idProduct)
         {
-            _repository.DeleteProduct(idProduct);
+            await _repository.DeleteProductAsync(idProduct);
             return NoContent();
         }
 
         [HttpGet("list")]
-        [Authorize(Roles = "REGULAR, VULNERABILITY, ADMINISTRATOR")]
-        public IActionResult GetAllProducts()
+        public async Task<ActionResult> GetAllProductsAsync()
         {
-            var list = _repository.GetAllProducts();
+            var list = await _repository.GetAllProductsAsync();
+
             if (list.Count < 1) return NoContent();
             return Ok(list);
         }
 
         [HttpGet("id/{idProduct}")]
-        [Authorize(Roles = "REGULAR, VULNERABILITY, ADMINISTRATOR")]
-        public IActionResult GetProductById([FromRoute] int idProduct)
+        public async Task<ActionResult> GetProductByIdAsync([FromRoute] int idProduct)
         {
-            var Product = _repository.GetProductById(idProduct);
+            var Product = await _repository.GetProductByIdAsync(idProduct);
+
             if (Product == null) return NotFound();
             return Ok(Product);
         }
 
         [HttpGet("search")]
-        [Authorize(Roles = "REGULAR, VULNERABILITY, ADMINISTRATOR")]
-        public IActionResult GetProductBySearch(
+        public async Task<ActionResult> GetProductBySearchAsync(
                 [FromQuery] string nameProduct,
                 [FromQuery] string descriptionProduct)
-                
-        {
-            var products = _repository.GetProductBySearch(nameProduct, descriptionProduct);
 
-            if (products.Count< 1) return NoContent();
+        {
+            var products = await _repository.GetProductBySearchAsync(nameProduct, descriptionProduct);
+
+            if (products.Count < 1) return NoContent();
             return Ok(products);
         }
 
         [HttpPost]
-        [Authorize(Roles = "ADMINISTRATOR")]
-        public IActionResult NewProduct([FromBody] NewProductDTO product)
+        public async Task<ActionResult> NewProductAsync([FromBody] NewProductDTO product)
         {
             if (!ModelState.IsValid) return BadRequest();
-            _repository.NewProduct(product);
+
+            await _repository.NewProductAsync(product);
             return Created($"api/Products/id/{product.Name}", product);
         }
 
         [HttpPut]
-        [Authorize(Roles = "ADMINISTRATOR")]
-        public IActionResult UpdateProduct([FromBody] UpdateProductDTO product)
+        public async Task<ActionResult> UpdateProductAsync([FromBody] UpdateProductDTO product)
         {
             if (!ModelState.IsValid) return BadRequest();
-            _repository.UpdateProduct(product);
+
+            await _repository.UpdateProductAsync(product);
             return Ok(product);
         }
 
         #endregion
     }
 }
-
-    
-
