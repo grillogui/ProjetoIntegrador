@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using ProjectEcommerce.src.data;
 using ProjectEcommerce.src.dtos;
 using ProjectEcommerce.src.models;
@@ -44,10 +46,10 @@ namespace ProjectEcommerce.src.repositories.implements
         /// <para>Created by: Ítalo Penha</para>
         /// </summary>
          
-        public void DeleteProduct(int id)
+        public async Task DeleteProductAsync(int id)
         {
-            _context.Products.Remove(GetProductById(id));
-            _context.SaveChanges();
+            _context.Products.Remove(await GetProductByIdAsync(id));
+            await _context.SaveChangesAsync();
         }
 
         /// <summary>
@@ -55,9 +57,9 @@ namespace ProjectEcommerce.src.repositories.implements
         /// <para>Created by: Ítalo Penha</para>
         /// </summary>
 
-        public List<ProductModel> GetAllProducts()
+        public async Task<List<ProductModel>> GetAllProductsAsync()
         {
-            return _context.Products.ToList();
+            return await _context.Products.ToListAsync();
         }
 
         /// <summary>
@@ -65,9 +67,9 @@ namespace ProjectEcommerce.src.repositories.implements
         /// <para>Created by: Ítalo Penha</para>
         /// </summary>
          
-        public ProductModel GetProductById(int id)
+        public async Task<ProductModel> GetProductByIdAsync(int id)
         {
-            return _context.Products.FirstOrDefault(p => p.Id == id);
+            return await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
         }
 
         /// <summary>
@@ -75,27 +77,27 @@ namespace ProjectEcommerce.src.repositories.implements
         /// <para>Created by: Joceline Gutierrez</para>
         /// </summary>
 
-        public List<ProductModel> GetProductBySearch(string nameProduct, string descriptionProduct)
+        public async Task<List<ProductModel>> GetProductBySearchAsync(string nameProduct, string descriptionProduct)
         {
             switch (nameProduct, descriptionProduct)
             {
                 case (null, null):
-                    return GetAllProducts();
+                    return await GetAllProductsAsync();
 
                 case (null, _):
-                    return _context.Products
+                    return await _context.Products
                             .Where(p => p.Description.Contains(descriptionProduct))
-                            .ToList();
+                            .ToListAsync();
 
                 case (_, null):
-                    return _context.Products
+                    return await _context.Products
                             .Where(p => p.Name.Contains(nameProduct))
-                            .ToList();
+                            .ToListAsync();
 
                 case (_, _):
-                    return _context.Products
+                    return await _context.Products
                             .Where(p => p.Description.Contains(descriptionProduct) & p.Name.Contains(nameProduct))
-                            .ToList();         
+                            .ToListAsync();         
             }
         }
 
@@ -104,9 +106,9 @@ namespace ProjectEcommerce.src.repositories.implements
         /// <para>Created by: Ítalo Penha</para>
         /// </summary>
 
-        public void NewProduct(NewProductDTO product)
+        public async Task NewProductAsync(NewProductDTO product)
         {
-            _context.Products.Add(new ProductModel
+            await _context.Products.AddAsync(new ProductModel
             {
                 Name = product.Name,
                 Price = product.Price,
@@ -115,7 +117,7 @@ namespace ProjectEcommerce.src.repositories.implements
                 Quantity = product.Quantity
 
             });
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
         /// <summary>
@@ -123,16 +125,16 @@ namespace ProjectEcommerce.src.repositories.implements
         /// <para>Created by: Joceline Gutierrez</para>
         /// </summary>
 
-        public void UpdateProduct(UpdateProductDTO product)
+        public async Task UpdateProductAsync(UpdateProductDTO product)
         {
-            var existingProduct = GetProductById(product.Id);
+            var existingProduct = await GetProductByIdAsync(product.Id);
             existingProduct.Name = product.Name;
             existingProduct.Price = product.Price;
             existingProduct.Image = product.Image;
             existingProduct.Description = product.Description;
             existingProduct.Quantity = product.Quantity;
             _context.Products.Update(existingProduct);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
         #endregion Methods

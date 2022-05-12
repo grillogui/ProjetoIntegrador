@@ -1,6 +1,7 @@
 ﻿using ProjectEcommerce.src.dtos;
 using ProjectEcommerce.src.models;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ProjectEcommerce.src.repositories
 {
@@ -12,12 +13,12 @@ namespace ProjectEcommerce.src.repositories
     /// </summary>
     public interface IProduct 
     {
-        void NewProduct(NewProductDTO product);
-        void UpdateProduct(UpdateProductDTO product);
-        void DeleteProduct(int id);
-        ProductModel GetProductById(int id);
-        List<ProductModel> GetAllProducts();
-        List<ProductModel> GetProductBySearch(string nameProduct, string descriptionProduct);
+        Task NewProductAsync(NewProductDTO product);
+        Task UpdateProductAsync(UpdateProductDTO product);
+        Task DeleteProductAsync(int id);
+        Task<ProductModel> GetProductByIdAsync(int id);
+        Task<List<ProductModel>> GetAllProductsAsync();
+        Task<List<ProductModel>> GetProductBySearchAsync(string nameProduct, string descriptionProduct);
 
     }
 }
