@@ -5,6 +5,7 @@ using ProjectEcommerce.src.dtos;
 using ProjectEcommerce.src.repositories;
 using ProjectEcommerce.src.repositories.implements;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace ProjectEcommerceTest.tests.repositories
 {
@@ -23,7 +24,7 @@ namespace ProjectEcommerceTest.tests.repositories
 
         [TestMethod]
 
-        public void CreateFourProductsOnDatabaseReturnFour()
+        public async Task CreateFourProductsOnDatabaseReturnFour()
         {
             var opt = new DbContextOptionsBuilder<ProjectEcommerceContext>()
                 .UseInMemoryDatabase(databaseName: "db_projectecommerce1")
@@ -33,7 +34,7 @@ namespace ProjectEcommerceTest.tests.repositories
             _repository = new ProductImplements(_context);
 
             //GIVEN that I register 4 products into Database
-            _repository.NewProduct(
+            await _repository.NewProductAsync(
                 new NewProductDTO(
                     "Banana",
                     8.00f,
@@ -41,7 +42,7 @@ namespace ProjectEcommerceTest.tests.repositories
                     "Banana nanica",
                     12));
 
-            _repository.NewProduct(
+            await _repository.NewProductAsync(
                 new NewProductDTO(
                     "Maçã",
                     5.54f,
@@ -49,7 +50,7 @@ namespace ProjectEcommerceTest.tests.repositories
                     "Maçã Gala",
                     8));
 
-            _repository.NewProduct(
+            await _repository.NewProductAsync(
                 new NewProductDTO(
                     "Manga",
                     10.00f,
@@ -57,7 +58,7 @@ namespace ProjectEcommerceTest.tests.repositories
                     "Manga Palmer",
                     20));
 
-            _repository.NewProduct(
+            await _repository.NewProductAsync(
                 new NewProductDTO(
                     "Maracujá",
                     7.50f,
@@ -66,21 +67,22 @@ namespace ProjectEcommerceTest.tests.repositories
                     5));
 
             //WHEN searching full list
+            var products = await _repository.GetAllProductsAsync();
             //THEN returns 4 products 
-            Assert.AreEqual(4, _repository.GetAllProducts().Count);
+            Assert.AreEqual(4, products.Count);
         }
 
         [TestMethod]
-        public  void UpdateProductReturnProductUpdated()
-       {
-           var opt = new DbContextOptionsBuilder<ProjectEcommerceContext>()
-                .UseInMemoryDatabase(databaseName: "db_projectecommerce2")
-                .Options;
-             _context = new ProjectEcommerceContext(opt);
+        public async Task UpdateProductReturnProductUpdated()
+        {
+            var opt = new DbContextOptionsBuilder<ProjectEcommerceContext>()
+                 .UseInMemoryDatabase(databaseName: "db_projectecommerce2")
+                 .Options;
+            _context = new ProjectEcommerceContext(opt);
             _repository = new ProductImplements(_context);
 
-           // GIVEN that the product is in the system
-           _repository.NewProduct(
+            // GIVEN that the product is in the system
+            await _repository.NewProductAsync(
                 new NewProductDTO(
                     "Maracujá",
                     7.50f,
@@ -89,8 +91,8 @@ namespace ProjectEcommerceTest.tests.repositories
                     5));
 
 
-           // WHEN I update the product
-            _repository.UpdateProduct(
+            // WHEN I update the product
+            await _repository.UpdateProductAsync(
                new UpdateProductDTO(
                    1,
                    "Laranja",
@@ -99,44 +101,46 @@ namespace ProjectEcommerceTest.tests.repositories
                     "Laranja Lima",
                     6));
 
-           // THEN I have the updated product
-           Assert.AreEqual(
-               "Laranja",
-               _repository.GetProductById(1).Name
-           );
-           
-           Assert.AreEqual(
-               5.00f,
-               _repository.GetProductById(1).Price
-           );
-           
-           Assert.AreEqual(
-               "foto laranja.img",
-               _repository.GetProductById(1).Image
-           );
-           
-           Assert.AreEqual(
-               "Laranja Lima",
-               _repository.GetProductById(1).Description
-           );
+            var product = await _repository.GetProductByIdAsync(1);
 
-           Assert.AreEqual(
-               6,
-               _repository.GetProductById(1).Quantity
-           );
-       }
+            // THEN I have the updated product
+            Assert.AreEqual(
+                "Laranja",
+                product.Name
+            );
 
-       [TestMethod]
-       public void DeleteProductReturnNull()
+            Assert.AreEqual(
+                5.00f,
+                product.Price
+            );
+
+            Assert.AreEqual(
+                "foto laranja.img",
+                product.Image
+            );
+
+            Assert.AreEqual(
+                "Laranja Lima",
+                product.Description
+            );
+
+            Assert.AreEqual(
+                6,
+                product.Quantity
+            );
+        }
+
+        [TestMethod]
+        public async Task DeleteProductReturnNull()
         {
             var opt = new DbContextOptionsBuilder<ProjectEcommerceContext>()
                 .UseInMemoryDatabase(databaseName: "db_projectecommerce3")
                 .Options;
-             _context = new ProjectEcommerceContext(opt);
+            _context = new ProjectEcommerceContext(opt);
             _repository = new ProductImplements(_context);
 
             //GIVEN that the product is in the system
-            _repository.NewProduct(
+            await _repository.NewProductAsync(
                 new NewProductDTO(
                     "Maracujá",
                     7.50f,
@@ -145,23 +149,23 @@ namespace ProjectEcommerceTest.tests.repositories
                     5));
 
             // WHEN I delete the product with id equals 1 
-            _repository.DeleteProduct(1);
+            await _repository.DeleteProductAsync(1);
 
             //THEN should return null
-            Assert.IsNull(_repository.GetProductById(1));
+            Assert.IsNull(_repository.GetProductByIdAsync(1));
         }
 
         [TestMethod]
-        public  void GetAllProducts()
-       {
-           var opt = new DbContextOptionsBuilder<ProjectEcommerceContext>()
-                .UseInMemoryDatabase(databaseName: "db_projectecommerce2")
-                .Options;
-             _context = new ProjectEcommerceContext(opt);
+        public async Task GetAllProducts()
+        {
+            var opt = new DbContextOptionsBuilder<ProjectEcommerceContext>()
+                 .UseInMemoryDatabase(databaseName: "db_projectecommerce2")
+                 .Options;
+            _context = new ProjectEcommerceContext(opt);
             _repository = new ProductImplements(_context);
 
             //GIVEN that I register 3 products
-            _repository.NewProduct(
+            await _repository.NewProductAsync(
                 new NewProductDTO(
                     "Alface",
                     3.33f,
@@ -169,7 +173,7 @@ namespace ProjectEcommerceTest.tests.repositories
                     "Alface Verde",
                     14));
 
-            _repository.NewProduct(
+            await _repository.NewProductAsync(
                 new NewProductDTO(
                     "Cebola",
                     7.80f,
@@ -177,7 +181,7 @@ namespace ProjectEcommerceTest.tests.repositories
                     "Cebola roxa",
                     8));
 
-            _repository.NewProduct(
+            await _repository.NewProductAsync(
                 new NewProductDTO(
                     "Cenoura",
                     5.50f,
@@ -186,14 +190,14 @@ namespace ProjectEcommerceTest.tests.repositories
                     13));
 
             //WHEN I search all the products
-            var list = _repository.GetAllProducts();
+            var list = await _repository.GetAllProductsAsync();
 
             //THEN return list of all products
             Assert.AreEqual(3, list.Count);
         }
 
         [TestMethod]
-        public void GetProductByIdReturnNotNull()
+        public async Task GetProductByIdReturnNotNull()
         {
             var opt = new DbContextOptionsBuilder<ProjectEcommerceContext>()
                 .UseInMemoryDatabase(databaseName: "db_projectecommerce2")
@@ -203,7 +207,7 @@ namespace ProjectEcommerceTest.tests.repositories
             _repository = new ProductImplements(_context);
 
             //GIVE that I register 1 products 
-            _repository.NewProduct(
+            await _repository.NewProductAsync(
                 new NewProductDTO(
                     "Limão",
                     4.50f,
@@ -212,7 +216,7 @@ namespace ProjectEcommerceTest.tests.repositories
                     20));
 
             //WHEN I search this product by id 5 
-            var product = _repository.GetProductById(1);
+            var product = await _repository.GetProductByIdAsync(1);
 
             //THEN I obtain a product
             Assert.IsNotNull(product);
@@ -220,7 +224,7 @@ namespace ProjectEcommerceTest.tests.repositories
 
         [TestMethod]
         [DataRow("Ma", null)]
-        public void GetProductBySearchReturnCustom(
+        public async Task GetProductBySearchReturnCustom(
             string nameProduct,
             string descriptionProduct)
         {
@@ -232,7 +236,7 @@ namespace ProjectEcommerceTest.tests.repositories
             _repository = new ProductImplements(_context);
 
             //GIVEN that I register 4 products into Database
-            _repository.NewProduct(
+            await _repository.NewProductAsync(
                 new NewProductDTO(
                     "Banana",
                     8.00f,
@@ -240,7 +244,7 @@ namespace ProjectEcommerceTest.tests.repositories
                     "Banana nanica",
                     12));
 
-            _repository.NewProduct(
+            await _repository.NewProductAsync(
                 new NewProductDTO(
                     "Maçã",
                     5.54f,
@@ -248,7 +252,7 @@ namespace ProjectEcommerceTest.tests.repositories
                     "Maçã Gala",
                     8));
 
-            _repository.NewProduct(
+            await _repository.NewProductAsync(
                 new NewProductDTO(
                     "Manga",
                     10.00f,
@@ -256,7 +260,7 @@ namespace ProjectEcommerceTest.tests.repositories
                     "Manga Palmer",
                     20));
 
-            _repository.NewProduct(
+            await _repository.NewProductAsync(
                 new NewProductDTO(
                     "Maracujá",
                     7.50f,
@@ -266,8 +270,8 @@ namespace ProjectEcommerceTest.tests.repositories
 
 
             // WHEN I search in the name "Ma" without description
-            var products = _repository
-            .GetProductBySearch(nameProduct, descriptionProduct);
+            var products = await _repository
+            .GetProductBySearchAsync(nameProduct, descriptionProduct);
 
             // THEN I receive 3 products
             Assert.AreEqual(3, products.Count());
