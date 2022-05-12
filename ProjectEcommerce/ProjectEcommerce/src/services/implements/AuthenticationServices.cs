@@ -55,12 +55,12 @@ namespace ProjectEcommerce.src.services.implements
         /// <param name="dto">UserRegisterDTO</param>
         /// <returns>UserModel</returns>
 
-        public void CreatedUserNotDuplicated(AddUserDTO dto)
+        public async Task CreatedUserNotDuplicatedAsync(AddUserDTO dto)
         {
-            var user = _repository.GetUserByEmail(dto.Email);
+            var user = await _repository.GetUserByEmailAsync(dto.Email);
             if (user != null) throw new Exception("Este email já está sendo utilizado");
             dto.Password = EncodePassword(dto.Password);
-            _repository.AddUser(dto);
+            await _repository.AddUserAsync(dto);
         }
 
         /// <summary>
@@ -99,9 +99,9 @@ namespace ProjectEcommerce.src.services.implements
         /// <param name="dto">UserLoginDTO</param>
         /// <returns>AuthorizationDTO</returns>
 
-        public AuthorizationDTO GetAuthorization(AuthenticationDTO dto)
+        public async Task<AuthorizationDTO> GetAuthorizationAsync(AuthenticationDTO dto)
         {
-            var user = _repository.GetUserByEmail(dto.Email);
+            var user = await _repository.GetUserByEmailAsync(dto.Email);
 
             if (user == null) throw new Exception("Usuário não encontrado");
 
