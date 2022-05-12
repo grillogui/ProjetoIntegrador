@@ -1,4 +1,5 @@
 ﻿using System.Linq;
+using System.Threading.Tasks;
 using ProjectEcommerce.src.data;
 using ProjectEcommerce.src.repositories;
 using ProjectEcommerce.src.repositories.implements;
@@ -21,74 +22,81 @@ namespace ProjectEcommerceTest.tests.repositories
         private ProjectEcommerceContext _context;
         private IUser _repository;
 
-        [TestInitialize]
-        public void InitialSetting()
-        {
-            var opt = new DbContextOptionsBuilder<ProjectEcommerceContext>()
-            .UseInMemoryDatabase(databaseName: "db_projectecommerce")
-            .Options;
-            _context = new ProjectEcommerceContext(opt);
-            _repository = new UserImplements(_context);
-        }
-
-
 
         // Test AddUser
         [TestMethod]
-        public void A01_CreateThreeUsersIntoDatabaseReturnThreeUsers()
+        public async Task CreateThreeUsersIntoDatabaseReturnThreeUsers()
         {
+
+            // Defining context
+            var opt = new DbContextOptionsBuilder<ProjectEcommerceContext>()
+            .UseInMemoryDatabase(databaseName: "db_projectecommerce")
+            .Options;
+
+            _context = new ProjectEcommerceContext(opt);
+            _repository = new UserImplements(_context);
+
             //Given that I register 3 users into database
-            _repository.AddUser(
-            new AddUserDTO(
-            "guigrillo@email.com",
-            "Guilherme Grillo",
-            "134652",
-            "COMUM",
-            "Rua das Paineiras, 122, apto 8"));
+            await _repository.AddUserAsync(
+                new AddUserDTO(
+                "guigrillo@email.com",
+                "Guilherme Grillo",
+                "134652",
+                "REGULAR",
+                "Rua das Paineiras, 122, apto 8"));
 
-            _repository.AddUser(
-            new AddUserDTO(
-            "karolcoli@email.com",
-            "Karol Oliveira",
-            "135247",
-            "COMUM",
-            "Rua dos Ipês, 351"));
+            await _repository.AddUserAsync(
+                new AddUserDTO(
+                "karolcoli@email.com",
+                "Karol Oliveira",
+                "135247",
+                "REGULAR",
+                "Rua dos Ipês, 351"));
 
-            _repository.AddUser(
-            new AddUserDTO(
-            "jocelineg@email.com",
-            "Joceline Gutierrez",
-            "235837",
-            "COMUM",
-            "Rua das Margaridas, 9668"));
+            await _repository.AddUserAsync(
+                new AddUserDTO(
+                "jocelineg@email.com",
+                "Joceline Gutierrez",
+                "235837",
+                "REGULAR",
+                "Rua das Margaridas, 9668"));
 
             //When searching full list. Then I get 3 users.
             Assert.AreEqual(3, _context.Users.Count());
         }
 
 
-
         // Test UpdateUser
         [TestMethod]
-        public void A02_UpdateUserReturnUpdatedUser()
+        public async Task UpdateUserReturnUpdatedUser()
         {
-            // Given that I register a user in the database
-            _repository.AddUser(
-            new AddUserDTO(
-            "brazolas@email.com",
-            "Matheus Brazolin",
-            "brabra1234",
-            "COMUM",
-            "Rua das Rosas, 123"));
+            // Defining context
+            var opt = new DbContextOptionsBuilder<ProjectEcommerceContext>()
+            .UseInMemoryDatabase(databaseName: "db_projectecommerce")
+            .Options;
+
+            _context = new ProjectEcommerceContext(opt);
+            _repository = new UserImplements(_context);
+
+
+            // Given that I register an user in the database
+            await _repository.AddUserAsync(
+                new AddUserDTO((
+                "brazolas@email.com",
+                "Matheus Brazolin",
+                "brabra1234",
+                "REGULAR",
+                "Rua das Rosas, 123"));
 
             //When we update the user
-            var old = _repository.GetUserByEmail("Matheus Brazolin");
-            _repository.UpdateUser(
-            new UpdateUserDTO(_context.Users.FirstOrDefault(u => u.Email == "brazolas@email.com").Id,
-            "Brazolin",
-            "mat00",
-            "COMUM",
-            "Rua das Jararacas, 80"));
+            await _repository.UpdateUserAsync(
+                new UpdateUserDTO(_context.Users.FirstOrDefault(u => u.Email == "brazolas@email.com").Id,
+                "Brazolin",
+                "mat00",
+                "REGULAR",
+                "Rua das Jararacas, 80"));
+
+            var old = await _repository.GetUserByEmailAsync("brazolas@email.com");
 
             //Then, it should return a new name
             Assert.AreEqual("Brazolin", _context.Users.FirstOrDefault(u => u.Id == old.Id).Name);
@@ -98,22 +106,30 @@ namespace ProjectEcommerceTest.tests.repositories
         }
 
 
-
         // Test GetUserByID
         [TestMethod]
-        public void A03_GetUserByIdReturnNotNullName()
+        public async Task GetUserByIdReturnNotNullNameAsync()
         {
+            // Defining context
+            var opt = new DbContextOptionsBuilder<ProjectEcommerceContext>()
+            .UseInMemoryDatabase(databaseName: "db_projectecommerce")
+            .Options;
+
+            _context = new ProjectEcommerceContext(opt);
+            _repository = new UserImplements(_context);
+
+
             //Given that I register an user in the database
-            _repository.AddUser(
-            new AddUserDTO(
-            "jocelineg@email.com",
-            "Joceline Gutierrez",
-            "235837",
-            "COMUM",
-            "Rua das Margaridas, 9668"));
+            await _repository.AddUserAsync(
+                new AddUserDTO(
+                "jocelineg@email.com",
+                "Joceline Gutierrez",
+                "235837",
+                "REGULAR",
+                "Rua das Margaridas, 9668"));
 
             //When I search for id number 6
-            var user = _repository.GetUserById(6);
+            var user = await _repository.GetUserByIdAsync(6);
 
             //Then, it should return a not null element
 
@@ -125,57 +141,71 @@ namespace ProjectEcommerceTest.tests.repositories
         }
 
 
-
         // Test GetUserByEmail
         [TestMethod]
-        public void A04_GetUserByEmailReturnNotNull()
+        public async Task GetUserByEmailReturnNotNullAsync()
         {
+            // Defining context
+            var opt = new DbContextOptionsBuilder<ProjectEcommerceContext>()
+            .UseInMemoryDatabase(databaseName: "db_projectecommerce")
+            .Options;
+
+            _context = new ProjectEcommerceContext(opt);
+            _repository = new UserImplements(_context);
+
             //Given that I register an user in the database
-            _repository.AddUser(
-            new AddUserDTO(
-            "leleo@email.com",
-            "Leonardo Sarto",
-            "senha123",
-            "COMUM",
-            "Rua das Maritacas, 98"));
+            await _repository.AddUserAsync(
+                new AddUserDTO(
+                "leleo@email.com",
+                "Leonardo Sarto",
+                "senha123",
+                "REGULAR",
+                "Rua das Maritacas, 98"));
 
             //When I search for this user's email
-            var user = _repository.GetUserByEmail("leleo@email.com");
+            var user = await  _repository.GetUserByEmailAsync("leleo@email.com");
 
             //Then, I get this user
             Assert.IsNotNull(user);
         }
 
 
-
         // Test GetUserByName
         [TestMethod]
-        public void A05_GetUsersByNameReturnList()
+        public async Task GetUsersByNameReturnListAsync()
         {
+            // Defining context
+            var opt = new DbContextOptionsBuilder<ProjectEcommerceContext>()
+            .UseInMemoryDatabase(databaseName: "db_projectecommerce")
+            .Options;
+
+            _context = new ProjectEcommerceContext(opt);
+            _repository = new UserImplements(_context);
+
             //Given that I register 3 users into database
-            _repository.AddUser(
-            new AddUserDTO(
-            "AnaPaula@email.com",
-            "Ana Paula",
-            "senha123",
-            "COMUM",
-            "Rua das Paineiras, 122, apto 8"));
+            await _repository.AddUserAsync(
+                new AddUserDTO(
+                "AnaPaula@email.com",
+                "Ana Paula",
+                "senha123",
+                "REGULAR",
+                "Rua das Paineiras, 122, apto 8"));
 
-            _repository.AddUser(
-            new AddUserDTO(
-            "Maryany@email.com",
-            "Ana Maria",
-            "senha123",
-            "COMUM",
-            "Rua dos Ipês, 351"));
+            await _repository.AddUserAsync(
+                new AddUserDTO(
+                "Maryany@email.com",
+                "Ana Maria",
+                "senha123",
+                "REGULAR",
+                "Rua dos Ipês, 351"));
 
-            _repository.AddUser(
-            new AddUserDTO(
-            "fefe@email.com",
-            "Fernanda Fatima",
-            "senha123",
-            "COMUM",
-            "Rua das Margaridas, 9668"));
+            await _repository.AddUserAsync(
+                new AddUserDTO(
+                "fefe@email.com",
+                "Fernanda Fatima",
+                "senha123",
+                "COMUM",
+                "Rua das Margaridas, 9668"));
 
             //When searching for name (Ana). 
             var list = _repository.GetUserByName("Ana");
@@ -185,40 +215,47 @@ namespace ProjectEcommerceTest.tests.repositories
         }
 
 
-
         // Test GetUserByType
         [TestMethod]
-        public void A06_GetUsersByTypeReturnList()
+        public async Task GetUsersByTypeReturnTwo()
         {
+             // Defining context
+            var opt = new DbContextOptionsBuilder<ProjectEcommerceContext>()
+            .UseInMemoryDatabase(databaseName: "db_projectecommerce")
+            .Options;
+
+            _context = new ProjectEcommerceContext(opt);
+            _repository = new UserImplements(_context);
+
             //Given that I register 3 users into databasE
-            _repository.AddUser(
-            new AddUserDTO(
-            "Maridias@email.com",
-            "Mariana Dias",
-            "senha123",
-            "COMUM",
-            "Rua dos Ipês, 898"));
+            await _repository.AddUserAsync(
+                new AddUserDTO(
+                "Maridias@email.com",
+                "Mariana Dias",
+                "senha123",
+                "VULNERABILITY",
+                "Rua dos Ipês, 898"));
 
-            _repository.AddUser(
-            new AddUserDTO(
-            "felima@email.com",
-            "Fernando Lima",
-            "senha123",
-            "VULNERABILIDADE",
-            "Rua das Margaridas, 98"));
+            await _repository.AddUserAsync(
+                new AddUserDTO(
+                "felima@email.com",
+                "Fernando Lima",
+                "senha123",
+                "VULNERABILITY",
+                "Rua das Margaridas, 98"));
 
-            _repository.AddUser(
-            new AddUserDTO(
-            "barbara@email.com",
-            "Barbara Paz",
-            "094628",
-            "VULNERABILIDADE",
-            "Rua das Araras, 666"));
+            await _repository.AddUserAsync(
+                new AddUserDTO(
+                "barbara@email.com",
+                "Barbara Paz",
+                "094628",
+                "REGULAR",
+                "Rua das Araras, 666"));
 
-            //When searching for type(VULNERABILIDADE).
-            var list = _repository.GetUserByType("VULNERABILIDADE");
+            //When searching for type(VULNERABILITY).
+            var list = await _repository.GetUserByTypeAsync("VULNERABILITY");
 
-            //Then I get all users with this type (Vulnerabilidade).
+            //Then I get all users with this type (VULNERABILITY).
             Assert.AreEqual(2, list.Count);
         }
     }
