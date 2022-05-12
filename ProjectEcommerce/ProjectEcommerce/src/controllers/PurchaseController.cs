@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using ProjectEcommerce.src.dtos;
 using ProjectEcommerce.src.repositories;
+using System.Threading.Tasks;
 
 namespace ProjectEcommerce.src.controllers
 {
@@ -25,27 +26,27 @@ namespace ProjectEcommerce.src.controllers
 
         [HttpPost]
         [Authorize(Roles = "REGULAR, VULNERABILITY,")]
-        public IActionResult NewPurchase([FromBody] NewPurchaseDTO purchase)
+        public async Task<ActionResult> NewPurchaseAsync([FromBody] NewPurchaseDTO purchase)
         {
             if (!ModelState.IsValid) return BadRequest();
 
-            _repository.NewPurchase(purchase);
+            await _repository.NewPurchaseAsync(purchase);
             return Created($"api/Purchases", purchase);
         }
 
         [HttpDelete("delete/{idPurchase}")]
         [Authorize(Roles = "REGULAR, VULNERABILITY, ADMINISTRATOR")]
-        public IActionResult DeletePurchase([FromRoute] int idPurchase)
+        public async Task<ActionResult> DeletePurchaseAsync([FromRoute] int idPurchase)
         {
-            _repository.DeletePurchase(idPurchase);
+            await _repository.DeletePurchaseAsync(idPurchase);
             return NoContent();
         }
 
         [HttpGet("list")]
         [Authorize(Roles = "ADMINISTRATOR")]
-        public IActionResult GetAllPurchases()
+        public async Task<ActionResult> GetAllPurchases()
         {
-            var list = _repository.GetAllPurchases();
+            var list = await _repository.GetAllPurchasesAsync();
 
             if (list.Count < 1) return NoContent();
 
@@ -54,9 +55,9 @@ namespace ProjectEcommerce.src.controllers
 
         [HttpGet("id/{idPurchase}")]
         [Authorize(Roles = "ADMINISTRATOR")]
-        public IActionResult GetPurchaseById([FromRoute]int idPurchase)
+        public async Task<ActionResult> GetPurchaseByIdAsync([FromRoute]int idPurchase)
         {
-            var purchase = _repository.GetPurchaseById(idPurchase);
+            var purchase = await _repository.GetPurchaseByIdAsync(idPurchase);
             if (purchase == null) return NotFound();
             return Ok(purchase);
             
@@ -64,9 +65,9 @@ namespace ProjectEcommerce.src.controllers
 
         [HttpGet("prod/{idProduct}")]
         [Authorize(Roles = "ADMINISTRATOR")]
-        public IActionResult GetQuantityPurchaseProduct([FromRoute]int idProduct)
+        public async Task<ActionResult> GetQuantityPurchaseProductAsync([FromRoute]int idProduct)
         {
-            var purchase = _repository.GetQuantityPurchaseProduct(idProduct);
+            var purchase = await _repository.GetQuantityPurchaseProductAsync(idProduct);
               
             return Ok(purchase);
         }

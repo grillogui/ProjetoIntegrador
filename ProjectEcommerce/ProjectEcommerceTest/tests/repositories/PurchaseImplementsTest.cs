@@ -5,6 +5,7 @@ using ProjectEcommerce.src.dtos;
 using ProjectEcommerce.src.models;
 using ProjectEcommerce.src.repositories;
 using ProjectEcommerce.src.repositories.implements;
+using ProjectEcommerce.src.utilities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -22,7 +23,7 @@ namespace ProjectEcommerceTest.tests.repositories
 
         //criando 6 novas compras
         [TestMethod]
-        public void CrateSixNewPurchasesReturnSixPurchases1()
+        public async Task CrateSixNewPurchasesReturnSixPurchases1()
         {
             var opt = new DbContextOptionsBuilder<ProjectEcommerceContext>()
                .UseInMemoryDatabase(databaseName: "db_projectecommerce1")
@@ -31,32 +32,32 @@ namespace ProjectEcommerceTest.tests.repositories
             _context = new ProjectEcommerceContext(opt);
             _repository = new PurchaseImplements(_context);
 
-            _repository.NewPurchase(
+            await _repository.NewPurchaseAsync(
                 new NewPurchaseDTO(
                     "léo@gmail.com",
                     "Laranja"));
 
-            _repository.NewPurchase(
+            await _repository.NewPurchaseAsync(
                 new NewPurchaseDTO(
                     "math@gmail.com",
                     "Pera"));
 
-            _repository.NewPurchase(
+            await _repository.NewPurchaseAsync(
                 new NewPurchaseDTO(
                     "karol@gmail.com",
                     "Uva"));
 
-            _repository.NewPurchase(
+            await _repository.NewPurchaseAsync(
                 new NewPurchaseDTO(
                     "gui@gmail.com",
                     "Melância"));
 
-            _repository.NewPurchase(
+            await _repository.NewPurchaseAsync(
                 new NewPurchaseDTO(
                     "joci@gmail.com",
                     "Jaboticaba"));
 
-            _repository.NewPurchase(
+            await _repository.NewPurchaseAsync(
                 new NewPurchaseDTO(
                     "italo@gmail.com",
                     "Amora"));
@@ -67,7 +68,7 @@ namespace ProjectEcommerceTest.tests.repositories
 
         //deletando uma compra da lista acima e retornando a lista atualizada
         [TestMethod]
-        public void DeletingPurchaseAndReturningUpdatedPurchases2()
+        public async Task DeletingPurchaseAndReturningUpdatedPurchases2()
         {
             var opt = new DbContextOptionsBuilder<ProjectEcommerceContext>()
                .UseInMemoryDatabase(databaseName: "db_projectecommerce2")
@@ -76,22 +77,22 @@ namespace ProjectEcommerceTest.tests.repositories
             _context = new ProjectEcommerceContext(opt);
             _repository = new PurchaseImplements(_context);
 
-            _repository.NewPurchase(
+            await _repository.NewPurchaseAsync(
                new NewPurchaseDTO(
                    "italo@gmail.com",
                    "Amora"));
 
-            _repository.NewPurchase(
+            await _repository.NewPurchaseAsync(
               new NewPurchaseDTO(
                   "gui@gmail.com",
                   "Uva"));
 
-            _repository.NewPurchase(
+            await _repository.NewPurchaseAsync(
               new NewPurchaseDTO(
                   "joce@gmail.com",
                   "Pêra"));
 
-            _repository.DeletePurchase(1);
+            await _repository.DeletePurchaseAsync(1);
 
             Assert.AreEqual(2, _context.Purchases.Count());
 
@@ -100,7 +101,7 @@ namespace ProjectEcommerceTest.tests.repositories
         //pegando compra pelo id e retornando seu email
         [TestMethod]
         
-        public void GetPurchaseByIdAndReturnBuyersEmail3()
+        public async Task GetPurchaseByIdAndReturnBuyersEmail3()
         {
             var opt = new DbContextOptionsBuilder<ProjectEcommerceContext>()
                .UseInMemoryDatabase(databaseName: "db_projectecommerce3")
@@ -111,25 +112,25 @@ namespace ProjectEcommerceTest.tests.repositories
 
             //GIVEN that I have a user and product created in the bank
 
-            _context.Users.Add(new UserModel
+            await _context.Users.AddAsync(new UserModel
             {
                 Email = "leonardo@email.com",
                 Name = "leonardo",
                 Password = "123456",
-                Type = "COMUM",
+                TypeUser.REGULAR,
                 Address = "Rua das Flores"
             });
 
-            _context.Users.Add(new UserModel
+           await _context.Users.AddAsync(new UserModel
             {
                 Email = "matheus@email.com",
                 Name = "matheus",
                 Password = "654321",
-                Type = "COMUM",
-                Address = "Travessa dos Jardins"
+               TypeUser.REGULAR,
+               Address = "Travessa dos Jardins"
             });
 
-            _context.Products.Add(new ProductModel
+            await _context.Products.AddAsync(new ProductModel
             {
                 Name = "Banana",
                 Price = 6.00f,
@@ -138,7 +139,7 @@ namespace ProjectEcommerceTest.tests.repositories
                 Quantity = 1.000f
             });
 
-            _context.Products.Add(new ProductModel
+            await _context.Products.AddAsync(new ProductModel
             {
                 Name = "Laranja",
                 Price = 4.50f,
@@ -147,10 +148,10 @@ namespace ProjectEcommerceTest.tests.repositories
                 Quantity = 1.500f
             });
 
-            _repository.NewPurchase(new NewPurchaseDTO("leonardo@email.com", "Banana"));
-            _repository.NewPurchase(new NewPurchaseDTO("matheus@email.com", "Laranja"));
+            await _repository.NewPurchaseAsync(new NewPurchaseDTO("leonardo@email.com", "Banana"));
+            await _repository.NewPurchaseAsync(new NewPurchaseDTO("matheus@email.com", "Laranja"));
 
-            var user = _repository.GetPurchaseById(2);
+            var user = await _repository.GetPurchaseByIdAsync(2);
 
             Assert.AreEqual("matheus@email.com", user.Buyer.Email);
 
@@ -158,7 +159,7 @@ namespace ProjectEcommerceTest.tests.repositories
 
         //pegando todas as compras 
         [TestMethod]
-        public void GetAllPurchases4()
+        public async Task GetAllPurchases4()
         {
            var opt = new DbContextOptionsBuilder<ProjectEcommerceContext>()
                .UseInMemoryDatabase(databaseName: "db_projectecommerce4")
@@ -169,25 +170,25 @@ namespace ProjectEcommerceTest.tests.repositories
 
             //GIVEN that I have a user and product created in the bank
 
-            _context.Users.Add(new UserModel
+            await _context.Users.AddAsync(new UserModel
             {
                 Email = "leonardo@email.com",
                 Name = "leonardo",
                 Password = "123456",
-                Type = "COMUM",
+                TypeUser.REGULAR,
                 Address = "Rua das Flores"
             });
 
-            _context.Users.Add(new UserModel
+            await _context.Users.AddAsync(new UserModel
             {
                 Email = "matheus@email.com",
                 Name = "matheus",
                 Password = "654321",
-                Type = "COMUM",
+                TypeUser.REGULAR,
                 Address = "Travessa dos Jardins"
             });
 
-            _context.Products.Add(new ProductModel
+            await _context.Products.AddAsync(new ProductModel
             {
                 Name = "Banana",
                 Price = 6.00f,
@@ -196,7 +197,7 @@ namespace ProjectEcommerceTest.tests.repositories
                 Quantity = 1.000f
             });
 
-            _context.Products.Add(new ProductModel
+            await _context.Products.AddAsync(new ProductModel
             {
                 Name = "Laranja",
                 Price = 4.50f,
@@ -205,7 +206,7 @@ namespace ProjectEcommerceTest.tests.repositories
                 Quantity = 1.500f
             });
 
-            _context.Products.Add(new ProductModel
+            await _context.Products.AddAsync(new ProductModel
             {
                 Name = "Abacaxi",
                 Price = 10.0f,
@@ -216,13 +217,13 @@ namespace ProjectEcommerceTest.tests.repositories
 
             //AND - I have sales
 
-            _repository.NewPurchase(new NewPurchaseDTO("leonardo@email.com", "Banana"));
-            _repository.NewPurchase(new NewPurchaseDTO("matheus@email.com", "Abacaxi"));
-            _repository.NewPurchase(new NewPurchaseDTO("leonardo@email.com", "Laranja"));
+            await _repository.NewPurchaseAsync(new NewPurchaseDTO("leonardo@email.com", "Banana"));
+            await _repository.NewPurchaseAsync(new NewPurchaseDTO("matheus@email.com", "Abacaxi"));
+            await _repository.NewPurchaseAsync(new NewPurchaseDTO("leonardo@email.com", "Laranja"));
 
 
             //WHEN I search all purchases
-            var list = _repository.GetAllPurchases();
+            var list = await _repository.GetAllPurchasesAsync();
 
             //THEN return list of all purchases
             Assert.AreEqual(3, list.Count);
@@ -230,7 +231,7 @@ namespace ProjectEcommerceTest.tests.repositories
 
         //pegando todas as compras
         [TestMethod]
-        public void GetPurchaseCountByProductName5()
+        public async Task GetPurchaseCountByProductName5()
         {
             var opt = new DbContextOptionsBuilder<ProjectEcommerceContext>()
                .UseInMemoryDatabase(databaseName: "db_projectecommerce5")
@@ -240,16 +241,16 @@ namespace ProjectEcommerceTest.tests.repositories
             _repository = new PurchaseImplements(_context);
 
             //GIVEN - Dado que tenho usuario e produto criado no banco
-            _context.Users.Add(new UserModel
+            await _context.Users.AddAsync(new UserModel
             {
                 Email = "gustavo@email.com",
                 Name = "Gustavo Boaz",
                 Password = "134652",
-                Type = "COMUN",
+                TypeUser.REGULAR,
                 Address = "Rua São Paulo"
             });
 
-            _context.Products.Add(new ProductModel
+            await _context.Products.AddAsync(new ProductModel
             {
                 Name = "Acerola",
                 Price = 5.75f,
@@ -259,12 +260,12 @@ namespace ProjectEcommerceTest.tests.repositories
             });
 
             //AND - E tenho Vendas
-            _repository.NewPurchase(new NewPurchaseDTO("gustavo@email.com", "Acerola"));
-            _repository.NewPurchase(new NewPurchaseDTO("gustavo@email.com", "Acerola"));
-            _repository.NewPurchase(new NewPurchaseDTO("gustavo@email.com", "Acerola"));
+            await _repository.NewPurchaseAsync(new NewPurchaseDTO("gustavo@email.com", "Acerola"));
+            await _repository.NewPurchaseAsync(new NewPurchaseDTO("gustavo@email.com", "Acerola"));
+            await _repository.NewPurchaseAsync(new NewPurchaseDTO("gustavo@email.com", "Acerola"));
 
             //WHEN - Quando pesquiso GetPurchaseProduct
-            var count = _repository.GetPurchaseProduct(1);
+            var count = await _repository.GetQuantityPurchaseProductAsync(1);
 
             //var list2 = _context.Purchases.ToList();
 
