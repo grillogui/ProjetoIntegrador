@@ -1,9 +1,11 @@
-﻿using ProjectEcommerce.src.data;
+﻿using Microsoft.EntityFrameworkCore;
+using ProjectEcommerce.src.data;
 using ProjectEcommerce.src.dtos;
 using ProjectEcommerce.src.models;
 using ProjectEcommerce.src.utilities;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace ProjectEcommerce.src.repositories.implements
 {
@@ -31,9 +33,9 @@ namespace ProjectEcommerce.src.repositories.implements
         #endregion Constructors
 
         #region Methods
-        public void AddUser(AddUserDTO user)
+        public async Task AddUserAsync (AddUserDTO user)
         {
-            _context.Users.Add(new UserModel
+            await _context.Users.AddAsync(new UserModel
             {
                 Email = user.Email,
                 Name = user.Name,
@@ -41,40 +43,43 @@ namespace ProjectEcommerce.src.repositories.implements
                 Type = user.Type,
                 Address = user.Address
             });
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
 
-        public UserModel GetUserByEmail(string email)
+        public async Task <UserModel> GetUserByEmailAsync (string email)
         {
-            return _context.Users.FirstOrDefault(u => u.Email == email);
+            return await _context.Users.FirstOrDefaultAsync(u => u.Email == email);
         }
 
-        public UserModel GetUserById(int id)
+        public async Task <UserModel> GetUserByIdAsync (int id)
         {
-            return _context.Users.FirstOrDefault(u => u.Id == id);
+            return await _context.Users.FirstOrDefaultAsync(u => u.Id == id);
         }
 
-        public List<UserModel> GetUserByName(string name)
+        public async Task <List<UserModel>> GetUserByNameAsync (string name)
         {
-            return _context.Users.Where(u => u.Name.Contains(name)).ToList();
+            return await _context.Users
+                        .Where(u => u.Name.Contains(name))
+                        .ToListAsync();
         }
 
-        public List<UserModel> GetUserByType(TypeUser type)
+        public async Task <List<UserModel>> GetUserByTypeAsync (TypeUser type)
         {
-            return _context.Users.Where(u => u.Type == (type)).ToList();
+            return await _context.Users
+                .Where(u => u.Type == (type))
+                .ToListAsync();
         }
 
-        public void UpdateUser(UpdateUserDTO user)
+        public async Task UpdateUserAsync (UpdateUserDTO user)
         {
-            var oldUser = GetUserById(user.Id);
+            var oldUser = await GetUserByIdAsync (user.Id);
             oldUser.Name = user.Name;
             oldUser.Password = user.Password;
             oldUser.Type = user.Type;
             oldUser.Address = user.Address;
             _context.Users.Update(oldUser);
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
-
 
         #endregion Methods
     }

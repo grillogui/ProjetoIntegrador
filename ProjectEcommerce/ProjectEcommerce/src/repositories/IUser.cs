@@ -3,7 +3,7 @@ using ProjectEcommerce.src.models;
 using ProjectEcommerce.src.utilities;
 using System.Collections.Generic;
 using System.Linq;
-
+using System.Threading.Tasks;
 
 namespace ProjectEcommerce.src.repositories
 {
@@ -16,11 +16,11 @@ namespace ProjectEcommerce.src.repositories
 
     public interface IUser
     {
-        void AddUser(AddUserDTO user);
-        void UpdateUser(UpdateUserDTO user);
-        UserModel GetUserById(int id);
-        UserModel GetUserByEmail(string email);
-        List<UserModel> GetUserByName(string name);
-        List<UserModel> GetUserByType(TypeUser type);
+        Task AddUserAsync(AddUserDTO user);
+        Task UpdateUserAsync(UpdateUserDTO user);
+        Task <UserModel> GetUserByIdAsync (int id);
+        Task <UserModel> GetUserByEmailAsync (string email);
+        Task <List<UserModel>> GetUserByNameAsync (string name);
+        Task <List<UserModel>> GetUserByTypeAsync (TypeUser type);
     }
 }
