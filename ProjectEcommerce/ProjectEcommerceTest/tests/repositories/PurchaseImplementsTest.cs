@@ -117,7 +117,7 @@ namespace ProjectEcommerceTest.tests.repositories
                 Email = "leonardo@email.com",
                 Name = "leonardo",
                 Password = "123456",
-                TypeUser.REGULAR,
+                Type = TypeUser.REGULAR,
                 Address = "Rua das Flores"
             });
 
@@ -126,7 +126,7 @@ namespace ProjectEcommerceTest.tests.repositories
                 Email = "matheus@email.com",
                 Name = "matheus",
                 Password = "654321",
-               TypeUser.REGULAR,
+               Type = TypeUser.REGULAR,
                Address = "Travessa dos Jardins"
             });
 
@@ -175,7 +175,7 @@ namespace ProjectEcommerceTest.tests.repositories
                 Email = "leonardo@email.com",
                 Name = "leonardo",
                 Password = "123456",
-                TypeUser.REGULAR,
+                Type = TypeUser.REGULAR,
                 Address = "Rua das Flores"
             });
 
@@ -184,7 +184,7 @@ namespace ProjectEcommerceTest.tests.repositories
                 Email = "matheus@email.com",
                 Name = "matheus",
                 Password = "654321",
-                TypeUser.REGULAR,
+                Type = TypeUser.REGULAR,
                 Address = "Travessa dos Jardins"
             });
 
@@ -246,7 +246,7 @@ namespace ProjectEcommerceTest.tests.repositories
                 Email = "gustavo@email.com",
                 Name = "Gustavo Boaz",
                 Password = "134652",
-                TypeUser.REGULAR,
+                Type = TypeUser.REGULAR,
                 Address = "Rua São Paulo"
             });
 

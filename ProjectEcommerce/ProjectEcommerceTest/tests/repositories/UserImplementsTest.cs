@@ -6,6 +6,7 @@ using ProjectEcommerce.src.repositories.implements;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ProjectEcommerce.src.dtos;
+using ProjectEcommerce.src.utilities;
 
 namespace ProjectEcommerceTest.tests.repositories
 {
@@ -42,7 +43,7 @@ namespace ProjectEcommerceTest.tests.repositories
                 "guigrillo@email.com",
                 "Guilherme Grillo",
                 "134652",
-                "REGULAR",
+                TypeUser.REGULAR,
                 "Rua das Paineiras, 122, apto 8"));
 
             await _repository.AddUserAsync(
@@ -50,7 +51,7 @@ namespace ProjectEcommerceTest.tests.repositories
                 "karolcoli@email.com",
                 "Karol Oliveira",
                 "135247",
-                "REGULAR",
+                TypeUser.REGULAR,
                 "Rua dos Ipês, 351"));
 
             await _repository.AddUserAsync(
@@ -58,7 +59,7 @@ namespace ProjectEcommerceTest.tests.repositories
                 "jocelineg@email.com",
                 "Joceline Gutierrez",
                 "235837",
-                "REGULAR",
+                TypeUser.REGULAR,
                 "Rua das Margaridas, 9668"));
 
             //When searching full list. Then I get 3 users.
@@ -81,11 +82,11 @@ namespace ProjectEcommerceTest.tests.repositories
 
             // Given that I register an user in the database
             await _repository.AddUserAsync(
-                new AddUserDTO((
+                new AddUserDTO(
                 "brazolas@email.com",
                 "Matheus Brazolin",
                 "brabra1234",
-                "REGULAR",
+                TypeUser.REGULAR,
                 "Rua das Rosas, 123"));
 
             //When we update the user
@@ -93,7 +94,7 @@ namespace ProjectEcommerceTest.tests.repositories
                 new UpdateUserDTO(_context.Users.FirstOrDefault(u => u.Email == "brazolas@email.com").Id,
                 "Brazolin",
                 "mat00",
-                "REGULAR",
+                TypeUser.REGULAR,
                 "Rua das Jararacas, 80"));
 
             var old = await _repository.GetUserByEmailAsync("brazolas@email.com");
@@ -125,7 +126,7 @@ namespace ProjectEcommerceTest.tests.repositories
                 "jocelineg@email.com",
                 "Joceline Gutierrez",
                 "235837",
-                "REGULAR",
+                TypeUser.REGULAR,
                 "Rua das Margaridas, 9668"));
 
             //When I search for id number 6
@@ -159,7 +160,7 @@ namespace ProjectEcommerceTest.tests.repositories
                 "leleo@email.com",
                 "Leonardo Sarto",
                 "senha123",
-                "REGULAR",
+                TypeUser.REGULAR,
                 "Rua das Maritacas, 98"));
 
             //When I search for this user's email
@@ -188,7 +189,7 @@ namespace ProjectEcommerceTest.tests.repositories
                 "AnaPaula@email.com",
                 "Ana Paula",
                 "senha123",
-                "REGULAR",
+                TypeUser.REGULAR,
                 "Rua das Paineiras, 122, apto 8"));
 
             await _repository.AddUserAsync(
@@ -196,7 +197,7 @@ namespace ProjectEcommerceTest.tests.repositories
                 "Maryany@email.com",
                 "Ana Maria",
                 "senha123",
-                "REGULAR",
+                TypeUser.REGULAR,
                 "Rua dos Ipês, 351"));
 
             await _repository.AddUserAsync(
@@ -204,14 +205,14 @@ namespace ProjectEcommerceTest.tests.repositories
                 "fefe@email.com",
                 "Fernanda Fatima",
                 "senha123",
-                "COMUM",
+                TypeUser.REGULAR,
                 "Rua das Margaridas, 9668"));
 
             //When searching for name (Ana). 
-            var list = _repository.GetUserByName("Ana");
+            var listUser = await _repository.GetUserByNameAsync("Ana");
 
             // Then I get all users with this name (Ana).
-            Assert.AreEqual(2, list.Count);
+            Assert.AreEqual(2, listUser.Count());
         }
 
 
@@ -233,7 +234,7 @@ namespace ProjectEcommerceTest.tests.repositories
                 "Maridias@email.com",
                 "Mariana Dias",
                 "senha123",
-                "VULNERABILITY",
+                TypeUser.VULNERABILITY,
                 "Rua dos Ipês, 898"));
 
             await _repository.AddUserAsync(
@@ -241,7 +242,7 @@ namespace ProjectEcommerceTest.tests.repositories
                 "felima@email.com",
                 "Fernando Lima",
                 "senha123",
-                "VULNERABILITY",
+                TypeUser.VULNERABILITY,
                 "Rua das Margaridas, 98"));
 
             await _repository.AddUserAsync(
@@ -249,11 +250,11 @@ namespace ProjectEcommerceTest.tests.repositories
                 "barbara@email.com",
                 "Barbara Paz",
                 "094628",
-                "REGULAR",
+                TypeUser.REGULAR,
                 "Rua das Araras, 666"));
 
             //When searching for type(VULNERABILITY).
-            var list = await _repository.GetUserByTypeAsync("VULNERABILITY");
+            var list = await _repository.GetUserByTypeAsync(TypeUser.VULNERABILITY);
 
             //Then I get all users with this type (VULNERABILITY).
             Assert.AreEqual(2, list.Count);

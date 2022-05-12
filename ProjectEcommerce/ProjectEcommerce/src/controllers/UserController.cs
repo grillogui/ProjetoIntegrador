@@ -46,7 +46,7 @@ namespace ProjectEcommerce.src.controllers
 
         [HttpPost]
         [AllowAnonymous]
-        public async Task<IActionResult> AddUserAsync([FromBody] AddUserDTO user)
+        public async Task<ActionResult> AddUserAsync([FromBody] AddUserDTO user)
         {
             if (!ModelState.IsValid) return BadRequest();
 
@@ -64,7 +64,7 @@ namespace ProjectEcommerce.src.controllers
 
         [HttpGet("email/{emailUser}")]
         [Authorize(Roles = "REGULAR, VULNERABILITY, ADMINISTRATOR")]
-        public async Task<IActionResult> GetUserByEmailAsync([FromRoute] string emailUser)
+        public async Task<ActionResult> GetUserByEmailAsync([FromRoute] string emailUser)
         {
             var user = await _repository.GetUserByEmailAsync(emailUser);
 
@@ -75,7 +75,7 @@ namespace ProjectEcommerce.src.controllers
 
         [HttpGet("id/{idUser}")]
         [Authorize(Roles = "REGULAR, VULNERABILITY, ADMINISTRATOR")]
-        public async  Task<IActionResult> GetUserByIdAsync([FromRoute] int idUser)
+        public async Task<ActionResult> GetUserByIdAsync([FromRoute] int idUser)
         {
             var user = await _repository.GetUserByIdAsync(idUser);
 
@@ -86,7 +86,7 @@ namespace ProjectEcommerce.src.controllers
 
         [HttpGet("name")]
         [Authorize(Roles = "REGULAR, VULNERABILITY, ADMINISTRATOR")]
-        public async  Task<IActionResult> GetUserByNameAsync([FromQuery] string nameUser)
+        public async Task<ActionResult> GetUserByNameAsync([FromQuery] string nameUser)
         {
             var users = await _repository.GetUserByNameAsync(nameUser);
 
@@ -97,7 +97,7 @@ namespace ProjectEcommerce.src.controllers
 
         [HttpGet("type")]
         [Authorize(Roles = "REGULAR, VULNERABILITY, ADMINISTRATOR")]
-        public async Task<IActionResult> GetUserByTypeAsync([FromQuery] TypeUser typeUser)
+        public async Task<ActionResult> GetUserByTypeAsync([FromQuery] TypeUser typeUser)
         {
             var users = await _repository.GetUserByTypeAsync(typeUser);
 
@@ -108,7 +108,7 @@ namespace ProjectEcommerce.src.controllers
 
         [HttpPut]
         [Authorize(Roles = "REGULAR, VULNERABILITY, ADMINISTRATOR")]
-        public async Task<IActionResult> UpdateUserAsync([FromBody] UpdateUserDTO user)
+        public async Task<ActionResult> UpdateUserAsync([FromBody] UpdateUserDTO user)
         {
             if (!ModelState.IsValid) return BadRequest();
 
