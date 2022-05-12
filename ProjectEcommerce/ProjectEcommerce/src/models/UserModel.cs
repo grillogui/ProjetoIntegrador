@@ -33,7 +33,6 @@ namespace ProjectEcommerce.src.models
         public string Password { get; set; }
 
         [Required]
-        [StringLength(30)]
         public  TypeUser Type { get; set; }
        
         [Required]

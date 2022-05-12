@@ -23,7 +23,7 @@ namespace ProjectEcommerce.src.dtos
         [Required, StringLength(30)]
         public string Password { get; set; }
 
-        [Required, StringLength(30)]
+        [Required]
         public TypeUser Type { get; set; }
 
         [Required, StringLength(255)]
