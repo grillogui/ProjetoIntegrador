@@ -1,6 +1,7 @@
 ﻿using ProjectEcommerce.src.dtos;
 using ProjectEcommerce.src.models;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 namespace ProjectEcommerce.src.repositories
 {
@@ -13,10 +14,10 @@ namespace ProjectEcommerce.src.repositories
     
     public interface IPurchase
     {
-        void NewPurchase(NewPurchaseDTO purchase);
-        void DeletePurchase(int id);
-        PurchaseModel GetPurchaseById(int id);
-        List<PurchaseModel> GetAllPurchases();
-        int GetQuantityPurchaseProduct(int productId);
+        Task NewPurchaseAsync(NewPurchaseDTO purchase);
+        Task DeletePurchaseAsync(int id);
+        Task <PurchaseModel> GetPurchaseByIdAsync(int id);
+        Task<List<PurchaseModel>> GetAllPurchasesAsync();
+        Task <int> GetQuantityPurchaseProduct (int productId);
     }
 }

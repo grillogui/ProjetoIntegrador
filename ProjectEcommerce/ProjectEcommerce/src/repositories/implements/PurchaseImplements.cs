@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using System.Linq;
 using ProjectEcommerce.src.repositories.implements;
 using Microsoft.EntityFrameworkCore;
+using System.Threading.Tasks;
 
 namespace ProjectEcommerce.src.repositories.implements
 {
@@ -22,43 +23,43 @@ namespace ProjectEcommerce.src.repositories.implements
         #endregion Builders
 
         #region Methods
-        public void NewPurchase(NewPurchaseDTO purchase)
+        public async Task NewPurchaseAsync(NewPurchaseDTO purchase)
         {
-            _context.Purchases.Add(new PurchaseModel
+           await _context.Purchases.AddAsync(new PurchaseModel
             {
-                Buyer = _context.Users.FirstOrDefault(
+                Buyer =  _context.Users.FirstOrDefault(
                     u => u.Email == purchase.EmailBuyer),
                 Items = _context.Products.FirstOrDefault(
                     p => p.Name == purchase.NameItems)
             });
-            _context.SaveChanges();
+            await _context.SaveChangesAsync();
         }
-        public void DeletePurchase(int id)
+        public async Task DeletePurchaseAsync(int id)
         {
-            _context.Purchases.Remove(GetPurchaseById(id));
-            _context.SaveChanges();
-        }
-
-        public List<PurchaseModel> GetAllPurchases()
-        {
-            return _context.Purchases.ToList();
+            _context.Purchases.Remove(await GetPurchaseByIdAsync(id));
+            await _context.SaveChangesAsync();
         }
 
-        public PurchaseModel GetPurchaseById(int id)
+        public async Task<List<PurchaseModel>> GetAllPurchases()
         {
-            return _context.Purchases
+            return await _context.Purchases.ToListAsync();
+        }
+
+        public async Task <PurchaseModel> GetPurchaseByIdAsync(int id)
+        {
+            return await _context.Purchases
                 .Include(p => p.Items)
                 .Include(p => p.Buyer)
-                .FirstOrDefault(p => p.Id == id);
+                .FirstOrDefaultAsync(p => p.Id == id);
         }
 
-        public int GetQuantityPurchaseProduct (int productId)
+        public async Task <int> GetQuantityPurchaseProductAsync (int productId)
         {
-            var quantity = _context.Purchases
+            var quantity = await _context.Purchases 
                 .Include(p => p.Items)
                 .Include(p => p.Buyer)
-                .Where(p => p.Items.Id == productId).ToList().Count;
-            if(quantity == 0) return 0;
+                .Where(p => p.Items.Id == productId).ToListAsync().Count;
+            if(quantity == 0)  return 0;
 
             return quantity + 1;
         }
