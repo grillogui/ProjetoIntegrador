@@ -2,6 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using ProjectEcommerce.src.data;
 using ProjectEcommerce.src.models;
+using ProjectEcommerce.src.utilities;
 using System.Linq;
 
 namespace ProjectEcommerceTest.tests.data
@@ -30,7 +31,7 @@ namespace ProjectEcommerceTest.tests.data
 		    user.Email = "italo@email.com";
             user.Name = "Ítalo Penha";
             user.Password = "134652";
-            user.Type = "Consumidor";
+            user.Type = TypeUser.REGULAR;
 		    user.Address = "Rua Itália, nº 53";
 
             _context.Users.Add(user); // Adicionando usuário
