@@ -22,15 +22,12 @@ namespace ProjectEcommerce.src.repositories.implements
 
         #endregion Attributes
 
-
         #region Constructors
 
         /// <summary>
         /// <para>Resume: Constructor of class.</para>
         /// </summary>
         /// <param name="context">ProjectEcommerceContext</param>
-
-
         public ProductImplements(ProjectEcommerceContext context)
         {
         	_context = context;
@@ -38,14 +35,12 @@ namespace ProjectEcommerce.src.repositories.implements
 
         #endregion Constructors
 
-
         #region Methods
 
         /// <summary>
-        /// <para>Resume: method for get product by id.</para>
+        /// <para>Resume: Asynchronous method to delete a product.</para>
         /// <para>Created by: Ítalo Penha</para>
         /// </summary>
-         
         public async Task DeleteProductAsync(int id)
         {
             _context.Products.Remove(await GetProductByIdAsync(id));
@@ -53,30 +48,27 @@ namespace ProjectEcommerce.src.repositories.implements
         }
 
         /// <summary>
-        /// <para>Resume: method for get all products by list.</para>
+        /// <para>Resume: Asynchronous method to get all products by list.</para>
         /// <para>Created by: Ítalo Penha</para>
         /// </summary>
-
         public async Task<List<ProductModel>> GetAllProductsAsync()
         {
             return await _context.Products.ToListAsync();
         }
 
         /// <summary>
-        /// <para>Resume: method for get product by Id.</para>
+        /// <para>Resume: Asynchronous method to get product by Id.</para>
         /// <para>Created by: Ítalo Penha</para>
         /// </summary>
-         
         public async Task<ProductModel> GetProductByIdAsync(int id)
         {
             return await _context.Products.FirstOrDefaultAsync(p => p.Id == id);
         }
 
         /// <summary>
-        /// <para>Resume: method for get product by search.</para>
+        /// <para>Resume: Asynchronous method to get product by search.</para>
         /// <para>Created by: Joceline Gutierrez</para>
         /// </summary>
-
         public async Task<List<ProductModel>> GetProductBySearchAsync(string nameProduct, string descriptionProduct)
         {
             switch (nameProduct, descriptionProduct)
@@ -102,10 +94,9 @@ namespace ProjectEcommerce.src.repositories.implements
         }
 
         /// <summary>
-        /// <para>Resume: method for add product.</para>
+        /// <para>Resume: Asynchronous method to add a new product.</para>
         /// <para>Created by: Ítalo Penha</para>
         /// </summary>
-
         public async Task NewProductAsync(NewProductDTO product)
         {
             await _context.Products.AddAsync(new ProductModel
@@ -121,10 +112,9 @@ namespace ProjectEcommerce.src.repositories.implements
         }
 
         /// <summary>
-        /// <para>Resume: method for update product.</para>
+        /// <para>Resume: Asynchronous method to update a product.</para>
         /// <para>Created by: Joceline Gutierrez</para>
         /// </summary>
-
         public async Task UpdateProductAsync(UpdateProductDTO product)
         {
             var existingProduct = await GetProductByIdAsync(product.Id);
