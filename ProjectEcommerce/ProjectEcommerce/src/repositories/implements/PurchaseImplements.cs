@@ -42,7 +42,10 @@ namespace ProjectEcommerce.src.repositories.implements
 
         public async Task<List<PurchaseModel>> GetAllPurchasesAsync()
         {
-            return await _context.Purchases.ToListAsync();
+            return await _context.Purchases
+                .Include(p => p.Items)
+                .Include(p => p.Buyer)
+                .ToListAsync();
         }
 
         public async Task <PurchaseModel> GetPurchaseByIdAsync(int id)
@@ -61,7 +64,7 @@ namespace ProjectEcommerce.src.repositories.implements
                 .Where(p => p.Items.Id == productId).ToListAsync();
             if(list.Count == 0)  return 0;
 
-            return list.Count + 1;
+            return list.Count;
         }
         #endregion
     }
