@@ -3,6 +3,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace BlogPessoal.src.dtos
 {
+        /// <summary>
+    /// <para>Resume:AuthenticationDTO</para>
+    /// <para>Created by: Matheus Brazolin</para>
+    /// <para>version: 1.0</para>
+    /// <para>Date: 13/05/2022</para>
+    /// </summary>
     public class AuthenticationDTO
     {
         [Required]
@@ -15,6 +21,12 @@ namespace BlogPessoal.src.dtos
             Password = password;
         }
     }
+    /// <summary>
+    /// <para>Resume:AuthorizationDTO</para>
+    /// <para>Created by: Matheus Brazolin</para>
+    /// <para>version: 1.0</para>
+    /// <para>Date: 13/05/2022</para>
+    /// </summary>
     public class AuthorizationDTO
     {
         public int Id { get; set; }
