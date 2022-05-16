@@ -1,5 +1,4 @@
-﻿using BlogPessoal.src.dtos;
-using Microsoft.Extensions.Configuration;
+﻿using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using ProjectEcommerce.src.dtos;
 using ProjectEcommerce.src.models;
@@ -13,7 +12,7 @@ using System.Threading.Tasks;
 namespace ProjectEcommerce.src.services.implements
 {
     /// <summary>
-    /// <para>Resume: Class responsible for implement enterprise logic of user</para>
+    /// <para>Resume: Class responsible for implement IAuthentication</para>
     /// <para>Created by: Joceline Gutierrez e Matheus Brazolin </para>
     /// <para>Version: 1.0</para>
     /// <para>Date: 11/05/2022</para>
@@ -37,9 +36,9 @@ namespace ProjectEcommerce.src.services.implements
         #region Methods
 
         /// <summary>
-        /// <para>Resume: Method responsible for encode user password</para>
+        /// <para>Resume: Method for encode password</para>
         /// </summary>
-        /// <param name="password">string</param>
+        /// <param name="password">Password to be encrypted</param>
         /// <returns>string</returns>
 
         public string EncodePassword(string password)
@@ -49,12 +48,9 @@ namespace ProjectEcommerce.src.services.implements
         }
 
         /// <summary>
-        /// <para>Resume: Method responsible for validate user email exist before creation</para>
-        /// <para>Description: Method encodes user password and validate email before save in database</para>
+        /// <para>Resume: Asynchronous method responsible for create user without duplicate on database</para>
         /// </summary>
-        /// <param name="dto">UserRegisterDTO</param>
-        /// <returns>UserModel</returns>
-
+        /// <param name="dto">AddUserDTO</param>
         public async Task CreatedUserNotDuplicatedAsync(AddUserDTO dto)
         {
             var user = await _repository.GetUserByEmailAsync(dto.Email);
@@ -64,12 +60,10 @@ namespace ProjectEcommerce.src.services.implements
         }
 
         /// <summary>
-        /// <para>Resume: Method responsible for generate token</para>
-        /// <para>Description: Method claims user email and role and generate token</para>
+        /// <para>Resume: Method responsible for generate token JWT</para>
         /// </summary>
         /// <param name="user">UserModel</param>
         /// <returns>string</returns>
-
         public string GenerateToken(UserModel user)
         {
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -93,12 +87,12 @@ namespace ProjectEcommerce.src.services.implements
         }
 
         /// <summary>
-        /// <para>Resume: Method responsible for validate user email and password before authorization</para>
-        /// <para>Description: Method encodes user password and validate email and password before authorization</para>
+        /// <para>Resume: Asynchronous method responsible to return authorization to authenticated user</para>
         /// </summary>
-        /// <param name="dto">UserLoginDTO</param>
+        /// <param name="dto">AuthenticationDTO</param>
         /// <returns>AuthorizationDTO</returns>
-
+        /// <exception cref="Exception">User not found</exception>
+        /// <exception cref="Exception">Incorrect Password</exception>
         public async Task<AuthorizationDTO> GetAuthorizationAsync(AuthenticationDTO dto)
         {
             var user = await _repository.GetUserByEmailAsync(dto.Email);

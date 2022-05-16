@@ -1,7 +1,7 @@
 ﻿using ProjectEcommerce.src.utilities;
 using System.ComponentModel.DataAnnotations;
 
-namespace BlogPessoal.src.dtos
+namespace ProjectEcommerce.src.dtos
 {
         /// <summary>
     /// <para>Resume:AuthenticationDTO</para>

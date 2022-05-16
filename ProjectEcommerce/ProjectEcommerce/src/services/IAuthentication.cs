@@ -1,5 +1,4 @@
 using System.Threading.Tasks;
-using BlogPessoal.src.dtos;
 using ProjectEcommerce.src.dtos;
 using ProjectEcommerce.src.models;
 
@@ -7,7 +6,7 @@ namespace ProjectEcommerce.src.services
 {
 
     /// <summary>
-    /// <para>Resume: Interface responsible for enterprise logic of user service.</para>
+    /// <para>Resume: Interface responsible for representing authentication actions</para>
     /// <para>Created by: Ítalo Penha</para>
     /// <para>Version: 1.0</para>
     /// <para>Date: 11/05/2022</para>
