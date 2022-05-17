@@ -186,7 +186,7 @@ namespace ProjectEcommerce.src.controllers
         /// </remarks>
         /// <response code="200">User updated</response>
         /// <response code="400">Error in request</response>
-        /// <response code="404">User not found</response
+        /// <response code="404">User not found</response>
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
         [HttpPut]
