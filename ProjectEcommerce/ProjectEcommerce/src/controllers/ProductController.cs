@@ -34,7 +34,9 @@ namespace ProjectEcommerce.src.controllers
         /// <param name="idProduct">int</param>
         /// <returns>ActionResult</returns>
         /// <response code="204">Product deleted</response>
+        /// <response code="403">Returns forbidden access</response>
         [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [HttpDelete("delete/{idProduct}")]
         [Authorize(Roles = "ADMINISTRATOR")]
         public async Task<ActionResult> DeleteProductAsync([FromRoute] int idProduct)
@@ -49,8 +51,10 @@ namespace ProjectEcommerce.src.controllers
         /// <returns>ActionResult</returns>
         /// <response code="200">List of products</response>
         /// <response code="204">Empty list</response>
+        /// <response code="403">Returns forbidden access</response>
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ProductModel))]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [HttpGet("list")]
         [Authorize(Roles = "ADMINISTRATOR")]
         public async Task<ActionResult> GetAllProductsAsync()
@@ -68,8 +72,10 @@ namespace ProjectEcommerce.src.controllers
         /// <returns>ActionResult</returns>
         /// <response code="200">Returns the product</response>
         /// <response code="404">Product not found</response>
+        /// <response code="403">Returns forbidden access</response>
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ProductModel))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [HttpGet("id/{idProduct}")]
         [Authorize(Roles = "ADMINISTRATOR")]
         public async Task<ActionResult> GetProductByIdAsync([FromRoute] int idProduct)
@@ -88,8 +94,10 @@ namespace ProjectEcommerce.src.controllers
         /// <returns>ActionResult</returns>
         /// <response code="200">Returns the products</response>
         /// <response code="204">Product does not exist for this search</response>
+        /// <response code="403">Returns forbidden access</response>
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof(ProductModel))]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [HttpGet("search")]
         [Authorize(Roles = "ADMINISTRATOR")]
         public async Task<ActionResult> GetProductBySearchAsync(
@@ -123,8 +131,10 @@ namespace ProjectEcommerce.src.controllers
         /// </remarks>
         /// <response code="201">Return created product</response>
         /// <response code="400">Error in request</response>
+        /// <response code="403">Returns forbidden access</response>
         [ProducesResponseType(StatusCodes.Status201Created, Type = typeof(ProductModel))]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [HttpPost]
         [Authorize(Roles = "ADMINISTRATOR")]
         public async Task<ActionResult> NewProductAsync([FromBody] NewProductDTO product)
@@ -156,8 +166,10 @@ namespace ProjectEcommerce.src.controllers
         /// </remarks>
         /// <response code="200">Return updated product</response>
         /// <response code="400">Error in request</response>
+        /// <response code="403">Returns forbidden access</response>
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status400BadRequest)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [HttpPut]
         [Authorize(Roles = "ADMINISTRATOR")]
         public async Task<ActionResult> UpdateProductAsync([FromBody] UpdateProductDTO product)

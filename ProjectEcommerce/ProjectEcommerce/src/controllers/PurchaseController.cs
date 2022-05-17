@@ -84,8 +84,10 @@ namespace ProjectEcommerce.src.controllers
         /// <returns>ActionResult</returns>
         /// <response code="200">Purchases list</response>
         /// <response code="204">Empty listt</response>
+        /// <response code="403">Returns forbidden access</response>
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status204NoContent)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [HttpGet("list")]
         [Authorize(Roles = "ADMINISTRATOR")]
         public async Task<ActionResult> GetAllPurchases()
@@ -103,9 +105,11 @@ namespace ProjectEcommerce.src.controllers
         /// <param name="idPurchase"></param>
         /// <returns>ActionResult</returns>
         /// <response code="200">return purchase</response>
-        /// <response code="404">purchase does not exist</response> 
+        /// <response code="404">purchase does not exist</response>
+        /// <response code="403">Returns forbidden access</response>
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof (PurchaseModel))]
         [ProducesResponseType(StatusCodes.Status404NotFound)]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [HttpGet("id/{idPurchase}")]
         [Authorize(Roles = "ADMINISTRATOR")]
         public async Task<ActionResult> GetPurchaseByIdAsync([FromRoute]int idPurchase)
@@ -122,7 +126,9 @@ namespace ProjectEcommerce.src.controllers
         /// <param name="idProduct"></param>
         /// <returns>ActionResult</returns>
         /// <response code="200">returns the purchase amount of that product</response>
+        /// <response code="403">Returns forbidden access</response>
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof (PurchaseModel))]
+        [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [HttpGet("prod/{idProduct}")]
         [Authorize(Roles = "ADMINISTRATOR")]
         public async Task<ActionResult> GetQuantityPurchaseProductAsync([FromRoute]int idProduct)
