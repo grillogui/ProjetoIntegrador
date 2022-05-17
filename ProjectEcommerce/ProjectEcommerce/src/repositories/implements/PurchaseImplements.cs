@@ -13,7 +13,7 @@ namespace ProjectEcommerce.src.repositories.implements
     /// <para>Class responsible for implementing IPurchase</para>
     /// <para>Criado por: Leonardo Sarto </para>
     /// <para>Versão 1.0</para>
-    /// <para>Data </para>
+    /// <para>Data 05/05/2022 </para>
     /// </summary>
     public class PurchaseImplements : IPurchase
     {

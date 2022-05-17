@@ -8,6 +8,13 @@ using System.Threading.Tasks;
 
 namespace ProjectEcommerce.src.controllers
 {
+    /// <summary>
+    /// <para>Resume: Creating Controllers for purchase class</para>
+    /// <para>Created by: Leonardo Sarto</para>
+    /// <para>Version: 1.0</para>
+    /// <para>Date: 12/05/2022</para>
+    /// </summary>
+
     [ApiController]
     [Route("api/Purchases")]
     [Produces("application/json")]
@@ -115,16 +122,12 @@ namespace ProjectEcommerce.src.controllers
         /// <param name="idProduct"></param>
         /// <returns>ActionResult</returns>
         /// <response code="200">returns the purchase amount of that product</response>
-        /// <response code="204">no purchases recorded on that item</response>
         [ProducesResponseType(StatusCodes.Status200OK, Type = typeof (PurchaseModel))]
-        [ProducesResponseType(StatusCodes.Status204NoContent)]
         [HttpGet("prod/{idProduct}")]
         [Authorize(Roles = "ADMINISTRATOR")]
         public async Task<ActionResult> GetQuantityPurchaseProductAsync([FromRoute]int idProduct)
         {
             var purchase = await _repository.GetQuantityPurchaseProductAsync(idProduct);
-
-            if (purchase == 0) return NoContent();    
               
             return Ok(purchase);
         }
