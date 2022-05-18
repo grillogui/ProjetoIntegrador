@@ -36,7 +36,21 @@ namespace ProjectEcommerce
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDbContext<ProjectEcommerceContext>(opt => opt.UseSqlServer(Configuration["ConnectionStrings:DefaultConnection"]));
+            // Database configure
+            if (Configuration["Enviroment:Start"] == "PROD")
+                {
+                services.AddEntityFrameworkNpgsql()
+                .AddDbContext<ProjectEcommerceContext>(
+                opt =>
+                opt.UseNpgsql(Configuration["ConnectionStringsProd:DefaultConnection"]));
+                }
+                else
+                {
+                services.AddDbContext<ProjectEcommerceContext>(
+                opt =>
+                opt.UseSqlServer(Configuration["ConnectionStringsDev:DefaultConnection"]));
+                }
+
 
             // Repositories
             services.AddScoped<IUser, UserImplements>();
@@ -48,12 +62,10 @@ namespace ProjectEcommerce
             services.AddControllers();
 
 
-            // Configuração de Serviços
-
+            // Configure Services
             services.AddScoped<IAuthentication, AuthenticationServices>();
 
-            // Configuração do Token Autenticação JWTBearer
-
+            // Configure Token Authentication JWTBearer
             var key = Encoding.ASCII.GetBytes(Configuration["Settings:Secret"]);
             services.AddAuthentication(a =>
             {
@@ -121,15 +133,24 @@ namespace ProjectEcommerce
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "ProjectEcommerce v1")); 
             }
 
-            // Ambiente de produção
-            // Rotas
+            // Production Enviroment
+            context.Database.EnsureCreated();
+            app.UseDeveloperExceptionPage();
+            app.UseSwagger();
+            app.UseSwaggerUI(c => {
+            c.SwaggerEndpoint("/swagger/v1/swagger.json", "ProjectEcommerce v1");
+            c.RoutePrefix = string.Empty;
+            });
+
+        
+            // Routes
             app.UseRouting();
             app.UseCors(c => c
             .AllowAnyOrigin()
             .AllowAnyMethod()
             .AllowAnyHeader());
 
-            // Autenticação e Autorização
+            // Authentication and authorization
             app.UseAuthentication();
             app.UseAuthorization();
 
