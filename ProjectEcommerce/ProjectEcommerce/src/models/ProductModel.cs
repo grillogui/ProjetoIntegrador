@@ -28,7 +28,6 @@ namespace ProjectEcommerce.src.models
             public float Price { get; set; }
 
             [Required]
-            [StringLength(30)]
             public string Image { get; set; }
 
             [Required]

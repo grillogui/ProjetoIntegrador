@@ -44,8 +44,8 @@ namespace ProjectEcommerce.src.controllers
         ///
         ///     POST /api/Authentication
         ///     {
-        ///        "email": "joceline@domain.com",
-        ///        "senha": "12345"
+        ///        "email": "italo@email.com",
+        ///        "password": "1234"
         ///     }
         ///
         /// </remarks>

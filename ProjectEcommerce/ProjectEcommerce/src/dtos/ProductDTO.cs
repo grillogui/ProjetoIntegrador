@@ -11,7 +11,7 @@ namespace ProjectEcommerce.src.dtos
     public class NewProductDTO
     {
 
-        [Required, StringLength(30)]
+        [Required, StringLength(50)]
         public string Name { get; set; }
 
         [Required]
@@ -20,7 +20,7 @@ namespace ProjectEcommerce.src.dtos
         [Required]
         public string Image { get; set; }
 
-        [Required, StringLength(30)]
+        [Required, StringLength(255)]
         public string Description { get; set; }
 
         [Required]
@@ -57,7 +57,7 @@ namespace ProjectEcommerce.src.dtos
         [Required]
         public string Image { get; set; }
 
-        [Required, StringLength(30)]
+        [Required]
         public string Description { get; set; }
 
         [Required]
