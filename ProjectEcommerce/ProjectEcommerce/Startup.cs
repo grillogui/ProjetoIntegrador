@@ -87,7 +87,7 @@ namespace ProjectEcommerce
             // Swagger
             services.AddSwaggerGen(s =>
             {
-                s.SwaggerDoc("v1", new OpenApiInfo { Title = "Project Ecommerce", Version = "v1" });
+                s.SwaggerDoc("v1", new OpenApiInfo { Title = "Easy Food", Version = "v1" });
 
                 s.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme()
                 {

@@ -58,7 +58,7 @@ namespace ProjectEcommerce.src.controllers
         ///        "email": "italo@email.com",
         ///        "name": "Ítalo Penha",
         ///        "password": "1234",
-        ///        "type": "URLPHOTO",
+        ///        "type": "ADMINISTRATOR",
         ///        "address": "Rua Itália, 97"
         ///     }
         ///
@@ -179,7 +179,7 @@ namespace ProjectEcommerce.src.controllers
         ///        "email": "italo@email.com",
         ///        "name": "Ítalo Penha",
         ///        "password": "1234",
-        ///        "type": "URLPHOTO",
+        ///        "type": "ADMINISTRATOR",
         ///        "address": "Rua Itália, 97"
         ///     }
         ///
