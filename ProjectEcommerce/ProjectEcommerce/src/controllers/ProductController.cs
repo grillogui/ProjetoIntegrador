@@ -56,7 +56,7 @@ namespace ProjectEcommerce.src.controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [HttpGet("list")]
-        [Authorize(Roles = "ADMINISTRATOR")]
+        [Authorize(Roles = "REGULAR, VULNERABILITY, ADMINISTRATOR")]
         public async Task<ActionResult> GetAllProductsAsync()
         {
             var list = await _repository.GetAllProductsAsync();
@@ -99,7 +99,7 @@ namespace ProjectEcommerce.src.controllers
         [ProducesResponseType(StatusCodes.Status204NoContent)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [HttpGet("search")]
-        [Authorize(Roles = "ADMINISTRATOR")]
+        [Authorize(Roles = "REGULAR, VULNERABILITY, ADMINISTRATOR")]
         public async Task<ActionResult> GetProductBySearchAsync(
                 [FromQuery] string nameProduct,
                 [FromQuery] string descriptionProduct)
