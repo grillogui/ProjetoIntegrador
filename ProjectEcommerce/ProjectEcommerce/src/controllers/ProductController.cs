@@ -77,7 +77,7 @@ namespace ProjectEcommerce.src.controllers
         [ProducesResponseType(StatusCodes.Status404NotFound)]
         [ProducesResponseType(StatusCodes.Status403Forbidden)]
         [HttpGet("id/{idProduct}")]
-        [Authorize(Roles = "ADMINISTRATOR")]
+        [Authorize(Roles = "REGULAR, VULNERABILITY, ADMINISTRATOR")]
         public async Task<ActionResult> GetProductByIdAsync([FromRoute] int idProduct)
         {
             var Product = await _repository.GetProductByIdAsync(idProduct);
